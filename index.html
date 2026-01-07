@@ -29,6 +29,9 @@
             --transition: all 0.3s ease;
             --border-radius: 10px;
             --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            --gold-color: #FFD700;
+            --silver-color: #C0C0C0;
+            --bronze-color: #CD7F32;
         }
 
         html {
@@ -640,10 +643,54 @@
             gap: 0.5rem;
         }
 
+        /* شارة التوثيق المعدلة */
+        .verification-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--gold-color);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            border: 2px solid #FFC107;
+        }
+
+        .verification-badge.silver {
+            background: var(--silver-color);
+            color: #000;
+            border-color: #C0C0C0;
+        }
+
+        .verification-badge.bronze {
+            background: var(--bronze-color);
+            color: #fff;
+            border-color: #CD7F32;
+        }
+
+        .verification-badge i {
+            font-size: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         .teacher-card h3 {
             padding: 1.5rem 1.5rem 0.5rem;
             color: var(--accent-color);
             font-size: 1.2rem;
+            position: relative;
+            padding-top: 3rem;
         }
 
         .teacher-qualification {
@@ -1281,6 +1328,11 @@
                             <i class="fas fa-check-circle"></i>
                             <span data-translate="teachers.verified">موثّق</span>
                         </div>
+                        <!-- شارة التوثيق المضافة -->
+                        <div class="verification-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>محفظ معتمد</span>
+                        </div>
                     </div>
                     <h3 data-translate="teachers.teacher1.name">الشيخ عبدالرحمن راضي</h3>
                     <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">إجازة في رواية حفص عن عاصم</p>
@@ -1293,6 +1345,11 @@
                         <div class="verified-badge">
                             <i class="fas fa-check-circle"></i>
                             <span data-translate="teachers.verified">موثّق</span>
+                        </div>
+                        <!-- شارة التوثيق المضافة -->
+                        <div class="verification-badge silver">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>محفظ معتمد</span>
                         </div>
                     </div>
                     <h3>سيتوفر محفظين آخرين قريباً</h3>
