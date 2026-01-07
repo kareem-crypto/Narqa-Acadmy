@@ -1,15 +1,16 @@
-// نظام الترجمة
+// ========== نظام الترجمة الكامل ==========
+
 const translations = {
     ar: {
         // التنقل
         "nav.home": "الرئيسية",
         "nav.features": "المميزات",
         "nav.teachers": "المحفظون",
-        "nav.schedule": "جدول الحصص",
-        "nav.contact": "اتصل بنا",
+        "nav.schedule": "جدول",
+        "nav.contact": "اتصل",
+        "nav.profile": "البروفايل",
         "nav.login": "تسجيل الدخول",
         "nav.register": "إنشاء حساب",
-        "nav.profile": "البروفايل",
         
         // البطل
         "hero.title": "تعلم القرآن الكريم بسهولة مع أفضل المحفظين",
@@ -106,10 +107,10 @@ const translations = {
         "nav.features": "Features",
         "nav.teachers": "Teachers",
         "nav.schedule": "Schedule",
-        "nav.contact": "Contact Us",
+        "nav.contact": "Contact",
+        "nav.profile": "Profile",
         "nav.login": "Login",
         "nav.register": "Register",
-        "nav.profile": "Profile",
         
         // Hero
         "hero.title": "Learn the Holy Quran Easily with the Best Teachers",
@@ -203,18 +204,18 @@ const translations = {
     fr: {
         // Navigation
         "nav.home": "Accueil",
-        "nav.features": "Caractéristiques",
+        "nav.features": "Fonctionnalités",
         "nav.teachers": "Enseignants",
-        "nav.schedule": "Emploi du temps",
-        "nav.contact": "Contactez-nous",
+        "nav.schedule": "Horaire",
+        "nav.contact": "Contact",
+        "nav.profile": "Profil",
         "nav.login": "Connexion",
         "nav.register": "S'inscrire",
-        "nav.profile": "Profil",
         
         // Hero
         "hero.title": "Apprenez le Saint Coran facilement avec les meilleurs enseignants",
         "hero.subtitle": "Une plateforme complète pour mémoriser le Coran en ligne avec suivi des progrès et réservation de sessions directes avec des enseignants spécialisés.",
-        "hero.cta1": "Commencez à apprendre maintenant",
+        "hero.cta1": "Commencer à apprendre",
         "hero.cta2": "En savoir plus",
         "hero.image_alt": "Mémorisation du Coran",
         
@@ -226,7 +227,7 @@ const translations = {
         "stats.certificates": "Certificats",
         
         // Features
-        "features.title": "Caractéristiques de la plateforme",
+        "features.title": "Fonctionnalités de la plateforme",
         "features.subtitle": "Tout ce dont vous avez besoin pour mémoriser le Coran en un seul endroit",
         "features.feature1.title": "Sessions en direct",
         "features.feature1.desc": "Sessions de mémorisation directe via Zoom ou Skype avec les meilleurs enseignants",
@@ -235,7 +236,7 @@ const translations = {
         "features.feature3.title": "Planification flexible",
         "features.feature3.desc": "Choisissez les horaires qui vous conviennent dans l'emploi du temps de l'enseignant",
         "features.feature4.title": "Système motivationnel",
-        "features.feature4.desc": "Gagnez des certificats et des points en terminant des sections du Coran",
+        "features.feature4.desc": "Obtenez des certificats et des points en terminant des sections du Coran",
         "features.feature5.title": "Récitations variées",
         "features.feature5.desc": "Choisissez parmi les Dix Qira'at et plusieurs narrations",
         "features.feature6.title": "Enseignants certifiés",
@@ -250,7 +251,7 @@ const translations = {
         "teachers.book_button": "Réserver une session",
         
         // Schedule
-        "schedule.title": "Emploi du temps des cours disponibles",
+        "schedule.title": "Horaire des cours disponibles",
         "schedule.subtitle": "Choisissez votre horaire convenable et commencez votre voyage avec le Coran",
         "schedule.table.time": "Heure",
         "schedule.table.teacher": "Enseignant",
@@ -270,11 +271,11 @@ const translations = {
         // Contact
         "contact.title": "Contactez-nous",
         "contact.subtitle": "Nous sommes là pour vous aider avec toute demande",
-        "contact.email": "Email",
+        "contact.email": "E-mail",
         "contact.phone": "Téléphone",
         "contact.address": "Adresse",
         "contact.form.name": "Votre nom",
-        "contact.form.email": "Votre email",
+        "contact.form.email": "Votre e-mail",
         "contact.form.subject": "Sujet",
         "contact.form.message": "Votre message",
         "contact.form.submit": "Envoyer le message",
@@ -290,7 +291,7 @@ const translations = {
         "footer.services.service5": "Cours de Tafsir",
         "footer.newsletter.title": "Newsletter",
         "footer.newsletter.desc": "Abonnez-vous pour recevoir toutes les mises à jour sur la plateforme et les offres spéciales.",
-        "footer.newsletter.placeholder": "Votre email",
+        "footer.newsletter.placeholder": "Votre e-mail",
         "footer.newsletter.submit": "S'abonner",
         "footer.copyright": "Narqa Academy. Tous droits réservés.",
         "footer.terms": "Conditions générales",
@@ -306,10 +307,10 @@ const translations = {
         "nav.features": "خصوصیات",
         "nav.teachers": "اساتذہ",
         "nav.schedule": "شیڈول",
-        "nav.contact": "رابطہ کریں",
+        "nav.contact": "رابطہ",
+        "nav.profile": "پروفائل",
         "nav.login": "لاگ ان",
         "nav.register": "رجسٹر کریں",
-        "nav.profile": "پروفائل",
         
         // Hero
         "hero.title": "بہترین اساتذہ کے ساتھ قرآن کریم آسانی سے سیکھیں",
@@ -406,10 +407,10 @@ const translations = {
         "nav.features": "Fitur",
         "nav.teachers": "Pengajar",
         "nav.schedule": "Jadwal",
-        "nav.contact": "Hubungi Kami",
+        "nav.contact": "Kontak",
+        "nav.profile": "Profil",
         "nav.login": "Masuk",
         "nav.register": "Daftar",
-        "nav.profile": "Profil",
         
         // Hero
         "hero.title": "Belajar Al-Quran dengan Mudah bersama Pengajar Terbaik",
@@ -498,59 +499,549 @@ const translations = {
         
         // General
         "language": "Bahasa"
+    },
+    
+    es: {
+        // Navigation
+        "nav.home": "Inicio",
+        "nav.features": "Características",
+        "nav.teachers": "Profesores",
+        "nav.schedule": "Horario",
+        "nav.contact": "Contacto",
+        "nav.profile": "Perfil",
+        "nav.login": "Iniciar Sesión",
+        "nav.register": "Registrarse",
+        
+        // Hero
+        "hero.title": "Aprende el Sagrado Corán fácilmente con los mejores profesores",
+        "hero.subtitle": "Una plataforma completa para memorizar el Corán en línea con seguimiento de progreso y reserva de sesiones directas con profesores especializados.",
+        "hero.cta1": "Comienza a Aprender Ahora",
+        "hero.cta2": "Conoce Más",
+        "hero.image_alt": "Memorización del Corán",
+        
+        // Statistics
+        "stats.students": "Estudiantes",
+        "stats.teachers": "Profesores",
+        "stats.sessions": "Sesiones",
+        "stats.hours": "Horas de Enseñanza",
+        "stats.certificates": "Certificados",
+        
+        // Features
+        "features.title": "Características de la Plataforma",
+        "features.subtitle": "Todo lo que necesitas para memorizar el Corán en un solo lugar",
+        "features.feature1.title": "Sesiones en Vivo",
+        "features.feature1.desc": "Sesiones de memorización directa vía Zoom o Skype con los mejores profesores",
+        "features.feature2.title": "Seguimiento de Progreso",
+        "features.feature2.desc": "Sistema completo para rastrear tu progreso de memorización y revisión",
+        "features.feature3.title": "Programación Flexible",
+        "features.feature3.desc": "Elige los horarios que te convengan del horario del profesor",
+        "features.feature4.title": "Sistema Motivacional",
+        "features.feature4.desc": "Gana certificados y puntos al completar secciones del Corán",
+        "features.feature5.title": "Recitaciones Variadas",
+        "features.feature5.desc": "Elige entre las Diez Qira'at y múltiples narraciones",
+        "features.feature6.title": "Profesores Certificados",
+        "features.feature6.desc": "Profesores certificados por Al-Azhar y universidades islámicas",
+        
+        // Teachers
+        "teachers.title": "Profesores Certificados",
+        "teachers.subtitle": "Aprende de los mejores profesores certificados",
+        "teachers.teacher1.name": "Sheij Abdulrahman Radi",
+        "teachers.teacher1.qualification": "Ijaza en la narración Hafs de Asim",
+        "teachers.verified": "Verificado",
+        "teachers.book_button": "Reservar Sesión",
+        
+        // Schedule
+        "schedule.title": "Horario de Clases Disponibles",
+        "schedule.subtitle": "Elige tu horario adecuado y comienza tu viaje con el Corán",
+        "schedule.table.time": "Hora",
+        "schedule.table.teacher": "Profesor",
+        "schedule.table.level": "Nivel",
+        "schedule.table.type": "Tipo de Sesión",
+        "schedule.table.action": "Acción",
+        
+        // Days
+        "days.saturday": "Sábado",
+        "days.sunday": "Domingo",
+        "days.monday": "Lunes",
+        "days.tuesday": "Martes",
+        "days.wednesday": "Miércoles",
+        "days.thursday": "Jueves",
+        "days.friday": "Vierno",
+        
+        // Contact
+        "contact.title": "Contáctanos",
+        "contact.subtitle": "Estamos aquí para ayudarte con cualquier consulta",
+        "contact.email": "Correo Electrónico",
+        "contact.phone": "Teléfono",
+        "contact.address": "Dirección",
+        "contact.form.name": "Tu Nombre",
+        "contact.form.email": "Tu Correo Electrónico",
+        "contact.form.subject": "Asunto",
+        "contact.form.message": "Tu Mensaje",
+        "contact.form.submit": "Enviar Mensaje",
+        
+        // Footer
+        "footer.about.desc": "Una plataforma completa para memorizar el Corán en línea con los mejores profesores y educadores.",
+        "footer.links.title": "Enlaces Rápidos",
+        "footer.services.title": "Nuestros Servicios",
+        "footer.services.service1": "Memorización del Corán",
+        "footer.services.service2": "Revisión",
+        "footer.services.service3": "Enseñanza del Tajweed",
+        "footer.services.service4": "Diez Qira'at",
+        "footer.services.service5": "Cursos de Tafsir",
+        "footer.newsletter.title": "Boletín",
+        "footer.newsletter.desc": "Suscríbete para recibir todas las actualizaciones sobre la plataforma y ofertas especiales.",
+        "footer.newsletter.placeholder": "Tu Correo Electrónico",
+        "footer.newsletter.submit": "Suscribirse",
+        "footer.copyright": "Narqa Academy. Todos los derechos reservados.",
+        "footer.terms": "Términos y Condiciones",
+        "footer.privacy": "Política de Privacidad",
+        
+        // General
+        "language": "Idioma"
     }
 };
 
-function loadLanguage(lang) {
-    // تغيير اتجاه الصفحة بناءً على اللغة
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+// إدارة نظام الترجمة
+class TranslationManager {
+    constructor() {
+        this.currentLang = 'ar';
+        this.isRTL = true;
+        this.init();
+    }
     
-    // تحديث نص جميع العناصر
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
-            
-            // تحديث العناصر الأخرى
-            if (element.hasAttribute('placeholder')) {
-                element.setAttribute('placeholder', translations[lang][key]);
-            }
-            
-            if (element.hasAttribute('title')) {
-                element.setAttribute('title', translations[lang][key]);
-            }
+    init() {
+        // تحميل اللغة المحفوظة
+        this.loadSavedLanguage();
+        // إعداد مستمعي الأحداث
+        this.setupEventListeners();
+        // تطبيق اللغة الأولى
+        this.applyLanguage(this.currentLang);
+    }
+    
+    loadSavedLanguage() {
+        const savedLang = localStorage.getItem('narqa-lang');
+        if (savedLang && translations[savedLang]) {
+            this.currentLang = savedLang;
         }
-    });
+    }
     
-    // حفظ اللغة المفضلة
-    localStorage.setItem('preferred-language', lang);
-    
-    // تحديث زر اللغة النشط
-    document.querySelectorAll('[data-lang]').forEach(btn => {
-        if (btn.dataset.lang === lang) {
-            btn.textContent = getLanguageName(lang);
+    setupEventListeners() {
+        // أزرار تغيير اللغة في الشريط العلوي
+        document.querySelectorAll('.language-btn, [data-lang]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const lang = e.target.closest('[data-lang]').dataset.lang;
+                this.changeLanguage(lang);
+            });
+        });
+        
+        // القائمة المنسدلة في القائمة الجوال
+        const mobileSelect = document.querySelector('.language-selector');
+        if (mobileSelect) {
+            mobileSelect.addEventListener('change', (e) => {
+                this.changeLanguage(e.target.value);
+            });
         }
-    });
+        
+        // تحديث القائمة المنسدلة عند تغيير اللغة
+        this.updateLanguageSelectors();
+    }
     
-    // تحديث القائمة المنسدلة
-    const langSelect = document.querySelector('.language-selector');
-    if (langSelect) {
-        langSelect.value = lang;
+    changeLanguage(lang) {
+        if (!translations[lang]) return;
+        
+        this.currentLang = lang;
+        this.isRTL = ['ar', 'ur'].includes(lang);
+        
+        // حفظ اللغة
+        localStorage.setItem('narqa-lang', lang);
+        
+        // تطبيق التغييرات
+        this.applyLanguage(lang);
+        
+        // إظهار إشعار
+        this.showLanguageChangeNotification();
+    }
+    
+    applyLanguage(lang) {
+        // تغيير اتجاه الصفحة
+        this.changePageDirection();
+        
+        // تحديث النصوص
+        this.updateAllTexts(lang);
+        
+        // تحديث أزرار اللغة
+        this.updateLanguageButtons(lang);
+        
+        // تحديث الروابط حسب اللغة
+        this.updateLinksForLanguage(lang);
+        
+        // إضافة تأثير انتقال سلس
+        this.addTransitionEffect();
+    }
+    
+    changePageDirection() {
+        document.documentElement.dir = this.isRTL ? 'rtl' : 'ltr';
+        document.documentElement.lang = this.currentLang;
+        
+        // تغيير فونت النص للغات غير العربية
+        if (this.currentLang === 'ar') {
+            document.body.style.fontFamily = "'Tajawal', sans-serif";
+        } else {
+            document.body.style.fontFamily = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
+        }
+    }
+    
+    updateAllTexts(lang) {
+        const translation = translations[lang];
+        
+        // تحديث جميع العناصر ذات data-translate
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translation[key]) {
+                // تحديث النص
+                element.textContent = translation[key];
+                
+                // تحديث العناصر الأخرى
+                if (element.hasAttribute('placeholder')) {
+                    element.setAttribute('placeholder', translation[key]);
+                }
+                
+                if (element.hasAttribute('title')) {
+                    element.setAttribute('title', translation[key]);
+                }
+                
+                if (element.hasAttribute('aria-label')) {
+                    element.setAttribute('aria-label', translation[key]);
+                }
+            }
+        });
+        
+        // تحديث النصوص الثابتة الإضافية
+        this.updateStaticTexts(lang);
+    }
+    
+    updateStaticTexts(lang) {
+        // تحديث النصوص التي ليس لها data-translate
+        const translation = translations[lang];
+        
+        // تحديث عنوان الصفحة
+        document.title = translation ? `نرقي - Narqa Academy (${this.getLanguageName(lang)})` : 'نرقي - Narqa Academy';
+        
+        // تحديث النصوص في جدول الحصص
+        this.updateScheduleTable(lang);
+        
+        // تحديث البيانات في بطاقات المحفظين
+        this.updateTeacherCards(lang);
+    }
+    
+    updateScheduleTable(lang) {
+        const translation = translations[lang];
+        if (!translation) return;
+        
+        // تحديث أيام الأسبوع في التبويبات
+        document.querySelectorAll('[data-day]').forEach(tab => {
+            const day = tab.dataset.day;
+            const dayKey = `days.${day}`;
+            if (translation[dayKey]) {
+                tab.textContent = translation[dayKey];
+            }
+        });
+        
+        // إعادة تحميل جدول الحصص إذا كان موجوداً
+        if (typeof window.renderSchedule === 'function') {
+            const activeDay = document.querySelector('.tab-btn.active')?.dataset.day || 'saturday';
+            window.renderSchedule(activeDay);
+        }
+    }
+    
+    updateTeacherCards(lang) {
+        const translation = translations[lang];
+        if (!translation) return;
+        
+        // تحديث بيانات المحفظين
+        document.querySelectorAll('.teacher-card').forEach((card, index) => {
+            if (index === 0) {
+                const name = card.querySelector('h3[data-translate="teachers.teacher1.name"]');
+                const qualification = card.querySelector('.teacher-qualification[data-translate="teachers.teacher1.qualification"]');
+                
+                if (name && translation['teachers.teacher1.name']) {
+                    name.textContent = translation['teachers.teacher1.name'];
+                }
+                
+                if (qualification && translation['teachers.teacher1.qualification']) {
+                    qualification.textContent = translation['teachers.teacher1.qualification'];
+                }
+            }
+        });
+    }
+    
+    updateLanguageButtons(lang) {
+        // تحديث زر اللغة الرئيسي
+        const mainLangBtn = document.querySelector('.language-btn[data-lang]');
+        if (mainLangBtn) {
+            mainLangBtn.textContent = this.getLanguageName(lang);
+            mainLangBtn.dataset.lang = lang;
+        }
+        
+        // تحديث أزرار القائمة المنسدلة
+        document.querySelectorAll('.language-dropdown button[data-lang]').forEach(btn => {
+            btn.textContent = this.getLanguageName(btn.dataset.lang);
+        });
+        
+        // تحديث القائمة المنسدلة في القائمة الجوال
+        const mobileSelect = document.querySelector('.language-selector');
+        if (mobileSelect) {
+            mobileSelect.value = lang;
+        }
+    }
+    
+    updateLanguageSelectors() {
+        // تحديث خيارات القائمة المنسدلة
+        const selectors = document.querySelectorAll('.language-selector');
+        selectors.forEach(select => {
+            select.innerHTML = '';
+            Object.keys(translations).forEach(lang => {
+                const option = document.createElement('option');
+                option.value = lang;
+                option.textContent = this.getLanguageName(lang);
+                if (lang === this.currentLang) {
+                    option.selected = true;
+                }
+                select.appendChild(option);
+            });
+        });
+    }
+    
+    updateLinksForLanguage(lang) {
+        // تحديث روابط وسائل التواصل الاجتماعي حسب اللغة
+        const whatsappLinks = document.querySelectorAll('a[href*="whatsapp"], a[href*="wa.me"]');
+        whatsappLinks.forEach(link => {
+            const currentHref = link.getAttribute('href');
+            const message = this.getWhatsAppMessage(lang);
+            const newHref = currentHref.split('?')[0] + '?text=' + encodeURIComponent(message);
+            link.setAttribute('href', newHref);
+        });
+        
+        // تحديث روابط البريد الإلكتروني
+        const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+        emailLinks.forEach(link => {
+            const currentHref = link.getAttribute('href');
+            const subject = this.getEmailSubject(lang);
+            const newHref = currentHref.split('?')[0] + '?subject=' + encodeURIComponent(subject);
+            link.setAttribute('href', newHref);
+        });
+    }
+    
+    getWhatsAppMessage(lang) {
+        const messages = {
+            'ar': 'مرحباً، أريد الاستفسار عن منصة نرقي لتحفيظ القرآن',
+            'en': 'Hello, I want to inquire about the Narqa platform for Quran memorization',
+            'fr': 'Bonjour, je veux me renseigner sur la plateforme Narqa pour la mémorisation du Coran',
+            'ur': 'السلام علیکم، میں قرآن حفظ کرنے کے لیے نرقہ پلیٹ فارم کے بارے میں پوچھنا چاہتا ہوں',
+            'id': 'Halo, saya ingin bertanya tentang platform Narqa untuk menghafal Al-Quran',
+            'es': 'Hola, quiero consultar sobre la plataforma Narqa para la memorización del Corán'
+        };
+        return messages[lang] || messages['ar'];
+    }
+    
+    getEmailSubject(lang) {
+        const subjects = {
+            'ar': 'استفسار عن منصة نرقي لتحفيظ القرآن',
+            'en': 'Inquiry about Narqa platform for Quran memorization',
+            'fr': 'Demande de renseignements sur la plateforme Narqa pour la mémorisation du Coran',
+            'ur': 'قرآن حفظ کے لیے نرقہ پلیٹ فارم کے بارے میں استفسار',
+            'id': 'Pertanyaan tentang platform Narqa untuk menghafal Al-Quran',
+            'es': 'Consulta sobre la plataforma Narqa para la memorización del Corán'
+        };
+        return subjects[lang] || subjects['ar'];
+    }
+    
+    getLanguageName(code) {
+        const names = {
+            'ar': 'العربية',
+            'en': 'English',
+            'fr': 'Français',
+            'ur': 'اردو',
+            'id': 'Bahasa Indonesia',
+            'es': 'Español'
+        };
+        return names[code] || code;
+    }
+    
+    addTransitionEffect() {
+        // إضافة تأثير انتقال سلس
+        document.body.style.opacity = '0.8';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.3s ease';
+            document.body.style.opacity = '1';
+        }, 50);
+    }
+    
+    showLanguageChangeNotification() {
+        const notification = document.createElement('div');
+        notification.className = 'language-notification';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${this.getLanguageChangeMessage()}</span>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: slideIn 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // إزالة الإشعار بعد 3 ثوانٍ
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    getLanguageChangeMessage() {
+        const messages = {
+            'ar': 'تم تغيير اللغة إلى العربية',
+            'en': 'Language changed to English',
+            'fr': 'Langue changée en Français',
+            'ur': 'زبان اردو میں تبدیل کردی گئی',
+            'id': 'Bahasa diubah ke Bahasa Indonesia',
+            'es': 'Idioma cambiado a Español'
+        };
+        return messages[this.currentLang] || messages['ar'];
+    }
+    
+    // دالة للمساعدة في الحصول على النص المترجم
+    translate(key) {
+        return translations[this.currentLang]?.[key] || key;
+    }
+    
+    // دالة لتحديث نص عنصر معين
+    updateElementText(element, key) {
+        const text = this.translate(key);
+        if (text !== key) {
+            element.textContent = text;
+        }
     }
 }
 
-function getLanguageName(code) {
-    const names = {
-        'ar': 'العربية',
-        'en': 'English',
-        'fr': 'Français',
-        'ur': 'اردو',
-        'id': 'Bahasa Indonesia'
-    };
-    return names[code] || code;
+// تهيئة مدير الترجمة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+    window.translationManager = new TranslationManager();
+    
+    // إضافة أنيميشنات CSS للترجمة
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        .language-notification {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        /* تأثيرات الانتقال عند تغيير اللغة */
+        body.lang-transition * {
+            transition: all 0.3s ease !important;
+        }
+        
+        /* تنسيق خاص للغات RTL و LTR */
+        [dir="rtl"] .nav-links {
+            margin-right: 0;
+            margin-left: auto;
+        }
+        
+        [dir="ltr"] .nav-links {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        
+        [dir="ltr"] .logo-img {
+            margin-right: 10px;
+            margin-left: 0;
+        }
+        
+        [dir="ltr"] .nav-links a::after {
+            left: 0;
+            right: auto;
+        }
+        
+        [dir="ltr"] .feature-icon {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        [dir="ltr"] .info-item:hover {
+            transform: translateX(10px);
+        }
+        
+        [dir="ltr"] .footer-links a:hover {
+            padding-left: 5px;
+            padding-right: 0;
+        }
+        
+        [dir="ltr"] .newsletter-form button:hover {
+            transform: translateX(5px);
+        }
+        
+        [dir="ltr"] .mobile-menu a:hover {
+            transform: translateX(10px);
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+// دوال مساعدة للوصول من أي مكان
+function changeLanguage(lang) {
+    if (window.translationManager) {
+        window.translationManager.changeLanguage(lang);
+    }
 }
 
-// تحميل اللغة المحفوظة عند بدء التشغيل
-const savedLang = localStorage.getItem('preferred-language') || 'ar';
-loadLanguage(savedLang);
+function getTranslation(key) {
+    if (window.translationManager) {
+        return window.translationManager.translate(key);
+    }
+    return key;
+}
+
+// تصدير الدوال للاستخدام في ملفات أخرى
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        TranslationManager,
+        translations,
+        changeLanguage,
+        getTranslation
+    };
+}
