@@ -1682,7 +1682,7 @@
             `;
             
             // تحديث رابط الواتساب
-            const phoneNumber = "01202988181";
+            const phoneNumber = "+201202988181";
             const message = `مرحباً، أنا مهتم بحجز جلسات في مسار "${selectedPath}" مع الشيخ عبدالرحمن.\n\nتفاصيل الحجز:\n- المسار: ${selectedPath}\n- الرسوم: ${data.price} جنيه شهرياً\n- المدة: ${data.duration}\n- الجلسات: ${data.sessions}\n\nأرجو التواصل لتحديد المواعيد المناسبة.`;
             const encodedMessage = encodeURIComponent(message);
             whatsappLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
