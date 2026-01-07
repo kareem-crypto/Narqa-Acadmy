@@ -3,12 +3,1112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نرقي-narqa</title>
+    <title>نرقي - Narqa Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
+    <style>
+        /* CSS الأساسي المدمج للبداية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2D5F2E;
+            --secondary-color: #F0A500;
+            --accent-color: #1A472A;
+            --light-color: #F8F9FA;
+            --dark-color: #2C3E50;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--light-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: rotate(15deg);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* زر اللغة */
+        .language-switcher {
+            position: relative;
+        }
+
+        .language-btn {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .language-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            min-width: 150px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .language-switcher:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-dropdown button {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            text-align: right;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .language-dropdown button:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+        }
+
+        /* زر القائمة الجوال */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: var(--transition);
+            z-index: 1002;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        /* القائمة الجوال */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1100;
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-menu:hover {
+            transform: rotate(90deg);
+        }
+
+        .mobile-language {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-selector {
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .language-selector option {
+            color: var(--text-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+            transform: translateX(-10px);
+        }
+
+        /* زر التسجيل في القائمة الجوال */
+        .mobile-login, .mobile-register {
+            background: var(--gradient);
+            color: var(--white) !important;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .mobile-login:hover, .mobile-register:hover {
+            background: var(--primary-color) !important;
+            color: var(--white) !important;
+        }
+
+        /* الأزرار العامة */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .primary-btn {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        /* الأنيميشن */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero-section {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.1) 0%, rgba(26, 71, 42, 0.1) 100%);
+            overflow: hidden;
+        }
+
+        .hero-section .container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        /* ========== FEATURES SECTION ========== */
+        .features-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid transparent;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        /* ========== TEACHERS SECTION ========== */
+        .teachers-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.05) 0%, rgba(26, 71, 42, 0.05) 100%);
+        }
+
+        .teachers-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .teacher-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .teacher-img-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .teacher-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .teacher-card:hover .teacher-img-container img {
+            transform: scale(1.1);
+        }
+
+        .verified-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .teacher-card h3 {
+            padding: 1.5rem 1.5rem 0.5rem;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .teacher-qualification {
+            padding: 0 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .teacher-btn {
+            margin: 0 1.5rem 1.5rem;
+            width: calc(100% - 3rem);
+        }
+
+        /* ========== SCHEDULE SECTION ========== */
+        .schedule-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--light-color);
+            border: none;
+            border-radius: var(--border-radius);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .tab-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .tab-btn.active {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .schedule-table-container {
+            overflow-x: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--light-color);
+        }
+
+        .schedule-table th {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .schedule-table tr:hover {
+            background: rgba(45, 95, 46, 0.05);
+        }
+
+        /* ========== STATS SECTION ========== */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--gradient);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card span:last-child {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.05) 0%, rgba(26, 71, 42, 0.05) 100%);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .info-item:hover {
+            transform: translateX(-10px);
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.5rem;
+        }
+
+        .contact-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-social a:hover {
+            background: var(--gradient);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-color);
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 95, 46, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 80px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-about .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-right: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: var(--border-radius);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-form button:hover {
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-legal {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary-color);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 992px) {
+            .hero-section .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-controls {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .teachers-slider {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .schedule-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .tab-btn {
+                width: 100%;
+            }
+            
+            .mobile-menu {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+<body>
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="container">
@@ -21,8 +1121,8 @@
                 <li><a href="#features" data-translate="nav.features">المميزات</a></li>
                 <li><a href="#teachers" data-translate="nav.teachers">المحفظون</a></li>
                 <li><a href="#schedule" data-translate="nav.schedule">جدول</a></li>
-                <li><a href="#contact" data-translate="nav.contact" >اتصل</a></li>
-                <li><a href="profile.html" data-translate="nav.contact" >البروفايل</a></li>
+                <li><a href="#contact" data-translate="nav.contact">اتصل</a></li>
+                <li><a href="profile.html" data-translate="nav.profile">البروفايل</a></li>
             </ul>
             <div class="header-controls">
                 <div class="language-switcher">
@@ -34,15 +1134,13 @@
                         <button data-lang="id">Bahasa Indonesia</button>
                     </div>
                 </div>
-                <!--                <div class="auth-buttons">
-                    <a href="login.html" class="btn login-btn" data-translate="nav.login">التسجيل</a>
-                </div>-->
             </div>
             <button class="mobile-menu-btn" aria-label="قائمة الجوال">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
+
     <!-- القائمة الجانبية للجوال -->
     <div class="mobile-menu">
         <div class="mobile-menu-header">
@@ -64,9 +1162,9 @@
             <li><a href="#teachers" data-translate="nav.teachers">المحفظون</a></li>
             <li><a href="#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
             <li><a href="#contact" data-translate="nav.contact">اتصل بنا</a></li>
-            <li><a href="profile.html" data-translate="nav.about">البروفايل</a></li>
-            <li><a href="#" class="mobile-login" data-translate="nav.login">تسجيل الدخول</a></li>
-            <li><a href="#" class="mobile-register" data-translate="nav.register">إنشاء حساب</a></li>
+            <li><a href="profile.html" data-translate="nav.profile">البروفايل</a></li>
+            <li><a href="login.html" class="mobile-login" data-translate="nav.login">تسجيل الدخول</a></li>
+            <li><a href="register.html" class="mobile-register" data-translate="nav.register">إنشاء حساب</a></li>
         </ul>
     </div>
 
@@ -163,39 +1261,30 @@
                 <p class="section-subtitle" data-translate="teachers.subtitle">تعلم من أفضل المحفظين المعتمدين</p>
             </div>
             <div class="teachers-slider">
-                    <div class="teacher-card">
-    <div class="teacher-img-container">
-        <img src="img/person.jpeg" alt="المحفظ" loading="lazy">
-        <!-- إضافة علامة التوثيق هنا -->
-        <div class="verified-badge">
-            <i class="fas fa-check-circle"></i>
-            <span data-translate="teachers.verified"></span>
-        </div>
-    </div>
-    <h3 data-translate="teachers.teacher1.name">الشيخ عبدالرحمن راضي</h3>
-    <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">إجازة في رواية حفص عن عاصم</p>
-    <div class="teacher-rating">
-        <!-- بقية المحتوى -->
-    </div>
-    <a href="https://wa.me/01202988181?text=مرحبا%20نرقي" class="btn teacher-btn" data-translate="teachers.book_button">حجز جلسة</a>
-</div>
+                <div class="teacher-card">
+                    <div class="teacher-img-container">
+                        <img src="img/person.jpeg" alt="المحفظ" loading="lazy">
+                        <div class="verified-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-translate="teachers.verified">موثّق</span>
+                        </div>
+                    </div>
+                    <h3 data-translate="teachers.teacher1.name">الشيخ عبدالرحمن راضي</h3>
+                    <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">إجازة في رواية حفص عن عاصم</p>
+                    <a href="https://wa.me/01202988181?text=مرحبا%20نرقي" class="btn teacher-btn primary-btn" data-translate="teachers.book_button">حجز جلسة</a>
+                </div>
 
-<div class="teacher-card">
-    <div class="teacher-img-container">
-        <img src="img/logo2.jpeg" alt="المحفظ" loading="lazy">
-        <!-- إضافة علامة التوثيق هنا -->
-        <div class="verified-badge">
-            <i class="fas fa-check-circle"></i>
-            <span data-translate="teachers.verified"></span>
-        </div>
-    </div>
-    <h3 data-translate="teachers.teacher1.name">سيتوفر محفظين اخرين قريبا</h3>
-    <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">برجاء الانتظار قريبا سيتوفر المحفظين</p>
-    <div class="teacher-rating">
-        <!-- بقية المحتوى -->
-    </div>
-</div>
-                <!-- باقي بطاقات المحفظين بنفس الهيكل -->
+                <div class="teacher-card">
+                    <div class="teacher-img-container">
+                        <img src="img/logo2.jpeg" alt="المحفظ" loading="lazy">
+                        <div class="verified-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span data-translate="teachers.verified">موثّق</span>
+                        </div>
+                    </div>
+                    <h3>سيتوفر محفظين آخرين قريباً</h3>
+                    <p class="teacher-qualification">برجاء الانتظار، قريباً سيتوفر المزيد من المحفظين</p>
+                </div>
             </div>
         </div>
     </section>
@@ -249,7 +1338,7 @@
                 <div class="stat-card">
                     <i class="fas fa-user-tie"></i>
                     <div class="stat-content">
-                        <span class="stat-number" data-count="13">0</span>
+                        <span class="stat-number" data-count="15">0</span>
                         <span data-translate="stats.teachers">محفظ</span>
                     </div>
                 </div>
@@ -284,26 +1373,26 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4 data-translate="contact.email">البريد الإلكتروني</h4>
-                            <a href="mailto:Narqaacademy@gmail.com">Narqaacademy@gmail.com</a><br>
+                            <a href="mailto:Narqaacademy@gmail.com">Narqaacademy@gmail.com</a>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4 data-translate="contact.phone">الهاتف</h4>
-                            <a href="tel:+201060785754">+201060785754</a><br>
+                            <a href="tel:+201060785754">+201060785754</a>
                         </div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4 data-translate="contact.address">العنوان</h4>
-                            <span>جمهورية مصر العربية _ الاسكندرية</span>
+                            <span>جمهورية مصر العربية _ الإسكندرية</span>
                         </div>
                     </div>
                     <div class="contact-social">
                         <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/01202988181" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
                         <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
@@ -340,7 +1429,7 @@
                     <p data-translate="footer.about.desc">منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع أفضل المحفظين والمعلمين.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/01202988181" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
                         <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
@@ -383,8 +1472,6 @@
                 <div class="footer-legal">
                     <a href="#" data-translate="footer.terms">الشروط والأحكام</a>
                     <a href="#" data-translate="footer.privacy">سياسة الخصوصية</a>
-
-                    <a href="https://wa.me/01207771639?text=what are you looking for" data-translate="footer.privacy">kareem ibrahem</a>                    
                 </div>
             </div>
         </div>
@@ -395,7 +1482,503 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="js/main.js"></script>
-    <script src="js/translations.js"></script>
+    <script>
+        // ========== JAVASCRIPT الأساسي ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة جميع الوظائف
+            initMobileMenu();
+            initScrollToTop();
+            initScheduleTabs();
+            initCounters();
+            initSmoothScroll();
+            initFormValidation();
+            initCurrentYear();
+            initNavbarScroll();
+            initLanguageSwitcher();
+            
+            // تحميل اللغة الافتراضية
+            loadLanguage('ar');
+        });
+
+        // القائمة الجوال
+        function initMobileMenu() {
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const closeBtn = document.querySelector('.close-menu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // العودة للأعلى
+        function initScrollToTop() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // تبادل جدول الحصص
+        function initScheduleTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const scheduleData = document.getElementById('schedule-data');
+            
+            // بيانات الجدول
+            const schedule = {
+                saturday: [
+                    { time: '09:00 - 10:00', teacher: 'الشيخ عبدالرحمن', level: 'مبتدئ', type: 'تحفيظ', action: 'حجز' },
+                    { time: '14:00 - 15:00', teacher: 'الشيخ عبدالرحمن', level: 'متوسط', type: 'مراجعة', action: 'حجز' },
+                    { time: '18:00 - 19:00', teacher: 'الشيخ عبدالرحمن', level: 'متقدم', type: 'تجويد', action: 'حجز' }
+                ],
+                sunday: [
+                    { time: '10:00 - 11:00', teacher: 'الشيخ عبدالرحمن', level: 'مبتدئ', type: 'تحفيظ', action: 'حجز' },
+                    { time: '16:00 - 17:00', teacher: 'الشيخ عبدالرحمن', level: 'متوسط', type: 'مراجعة', action: 'حجز' }
+                ],
+                monday: [
+                    { time: '11:00 - 12:00', teacher: 'الشيخ عبدالرحمن', level: 'مبتدئ', type: 'تحفيظ', action: 'حجز' }
+                ],
+                tuesday: [],
+                wednesday: [
+                    { time: '13:00 - 14:00', teacher: 'الشيخ عبدالرحمن', level: 'متوسط', type: 'مراجعة', action: 'حجز' }
+                ],
+                thursday: [
+                    { time: '15:00 - 16:00', teacher: 'الشيخ عبدالرحمن', level: 'متقدم', type: 'تجويد', action: 'حجز' }
+                ],
+                friday: []
+            };
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // إزالة النشط من جميع الأزرار
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // إضافة النشط للزر المضغوط
+                    btn.classList.add('active');
+                    
+                    const day = btn.dataset.day;
+                    renderSchedule(day);
+                });
+            });
+            
+            function renderSchedule(day) {
+                scheduleData.innerHTML = '';
+                
+                const sessions = schedule[day] || [];
+                
+                if (sessions.length === 0) {
+                    scheduleData.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 2rem;">
+                                لا توجد حصص متاحة لهذا اليوم
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                sessions.forEach(session => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${session.time}</td>
+                        <td>${session.teacher}</td>
+                        <td><span class="level-badge">${session.level}</span></td>
+                        <td>${session.type}</td>
+                        <td><button class="btn primary-btn book-btn" style="padding: 0.5rem 1rem;" onclick="bookSession('${session.time}', '${session.teacher}')">${session.action}</button></td>
+                    `;
+                    scheduleData.appendChild(row);
+                });
+            }
+            
+            // عرض الجدول الأول افتراضياً
+            renderSchedule('saturday');
+        }
+
+        // زر حجز الجلسة
+        function bookSession(time, teacher) {
+            const phoneNumber = "01202988181";
+            const message = `مرحباً، أريد حجز جلسة في ${time} مع ${teacher}`;
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // العدادات المتزايدة
+        function initCounters() {
+            const counters = document.querySelectorAll('.stat-number[data-count]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.dataset.count);
+                        const duration = 2000;
+                        const increment = target / (duration / 16);
+                        let current = 0;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                counter.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                counter.textContent = Math.floor(current);
+                            }
+                        }, 16);
+                        
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+        // التمرير السلس
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href === '#' || href.startsWith('#home')) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // إغلاق القائمة الجوال إذا كانت مفتوحة
+                        const mobileMenu = document.querySelector('.mobile-menu');
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    }
+                });
+            });
+        }
+
+        // التحقق من النماذج
+        function initFormValidation() {
+            const contactForm = document.getElementById('contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    const inputs = this.querySelectorAll('input, textarea');
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            isValid = false;
+                            input.style.borderColor = '#dc3545';
+                        } else {
+                            input.style.borderColor = '';
+                        }
+                    });
+                    
+                    if (isValid) {
+                        // هنا يمكن إرسال البيانات للخادم
+                        this.reset();
+                        showNotification('تم إرسال رسالتك بنجاح!', 'success');
+                    } else {
+                        showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                    }
+                });
+            }
+        }
+
+        // إظهار الإشعارات
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                background: ${type === 'success' ? '#2D5F2E' : '#dc3545'};
+                color: white;
+                border-radius: 10px;
+                z-index: 2000;
+                animation: slideIn 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // السنة الحالية
+        function initCurrentYear() {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        }
+
+        // شريط التنقل المتحرك
+        function initNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // محول اللغة
+        function initLanguageSwitcher() {
+            const langBtns = document.querySelectorAll('[data-lang]');
+            const mobileLangSelect = document.querySelector('.language-selector');
+            
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    loadLanguage(lang);
+                });
+            });
+            
+            if (mobileLangSelect) {
+                mobileLangSelect.addEventListener('change', (e) => {
+                    loadLanguage(e.target.value);
+                });
+            }
+        }
+
+        // نظام الترجمة
+        const translations = {
+            ar: {
+                // التنقل
+                "nav.home": "الرئيسية",
+                "nav.features": "المميزات",
+                "nav.teachers": "المحفظون",
+                "nav.schedule": "جدول",
+                "nav.contact": "اتصل",
+                "nav.profile": "البروفايل",
+                "nav.login": "تسجيل الدخول",
+                "nav.register": "إنشاء حساب",
+                
+                // البطل
+                "hero.title": "تعلم القرآن الكريم بسهولة مع أفضل المحفظين",
+                "hero.subtitle": "منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع متابعة التقدم وإمكانية حجز جلسات مباشرة مع مشايخ متخصصين.",
+                "hero.cta1": "ابدأ التعلم الآن",
+                "hero.cta2": "تعرف على المزيد",
+                "hero.image_alt": "تحفيظ القرآن",
+                
+                // الإحصائيات
+                "stats.students": "طالب",
+                "stats.teachers": "محفظ",
+                "stats.sessions": "جلسة",
+                "stats.hours": "ساعة تعليم",
+                "stats.certificates": "شهادة",
+                
+                // المميزات
+                "features.title": "مميزات المنصة",
+                "features.subtitle": "كل ما تحتاجه لتحفيظ القرآن الكريم في مكان واحد",
+                "features.feature1.title": "جلسات مباشرة",
+                "features.feature1.desc": "جلسات تحفيظ مباشرة عبر Zoom أو Skype مع أفضل المحفظين",
+                "features.feature2.title": "متابعة التقدم",
+                "features.feature2.desc": "نظام متكامل لمتابعة تقدمك في الحفظ والمراجعة",
+                "features.feature3.title": "جدولة مرنة",
+                "features.feature3.desc": "اختر المواعيد المناسبة لك من جدول المحفظ",
+                "features.feature4.title": "نظام تحفيزي",
+                "features.feature4.desc": "حصولك على شهادات ونقاط عند إتمام أجزاء من القرآن",
+                "features.feature5.title": "تلاوات متنوعة",
+                "features.feature5.desc": "اختيار بين القراءات العشر وروايات متعددة",
+                "features.feature6.title": "معلمون معتمدون",
+                "features.feature6.desc": "محفظون معتمدون من الأزهر والجامعات الإسلامية",
+                
+                // المحفظون
+                "teachers.title": "المحفظون المعتمدون",
+                "teachers.subtitle": "تعلم من أفضل المحفظين المعتمدين",
+                "teachers.teacher1.name": "الشيخ عبدالرحمن راضي",
+                "teachers.teacher1.qualification": "إجازة في رواية حفص عن عاصم",
+                "teachers.verified": "موثّق",
+                "teachers.book_button": "حجز جلسة",
+                
+                // الجدول
+                "schedule.title": "جدول الحصص المتاحة",
+                "schedule.subtitle": "اختر الوقت المناسب لك وابدأ رحلتك مع القرآن الكريم",
+                "schedule.table.time": "الوقت",
+                "schedule.table.teacher": "المحفظ",
+                "schedule.table.level": "المستوى",
+                "schedule.table.type": "نوع الجلسة",
+                "schedule.table.action": "الإجراء",
+                
+                // الأيام
+                "days.saturday": "السبت",
+                "days.sunday": "الأحد",
+                "days.monday": "الإثنين",
+                "days.tuesday": "الثلاثاء",
+                "days.wednesday": "الأربعاء",
+                "days.thursday": "الخميس",
+                "days.friday": "الجمعة",
+                
+                // التواصل
+                "contact.title": "تواصل معنا",
+                "contact.subtitle": "نحن هنا لمساعدتك في أي استفسار",
+                "contact.email": "البريد الإلكتروني",
+                "contact.phone": "الهاتف",
+                "contact.address": "العنوان",
+                "contact.form.name": "اسمك الكريم",
+                "contact.form.email": "بريدك الإلكتروني",
+                "contact.form.subject": "الموضوع",
+                "contact.form.message": "رسالتك",
+                "contact.form.submit": "إرسال الرسالة",
+                
+                // التذييل
+                "footer.about.desc": "منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع أفضل المحفظين والمعلمين.",
+                "footer.links.title": "روابط سريعة",
+                "footer.services.title": "خدماتنا",
+                "footer.services.service1": "تحفيظ القرآن",
+                "footer.services.service2": "مراجعة الحفظ",
+                "footer.services.service3": "تعليم التجويد",
+                "footer.services.service4": "القراءات العشر",
+                "footer.services.service5": "دورات التفسير",
+                "footer.newsletter.title": "النشرة البريدية",
+                "footer.newsletter.desc": "اشترك ليصلك كل جديد عن المنصة والعروض الخاصة.",
+                "footer.newsletter.placeholder": "بريدك الإلكتروني",
+                "footer.newsletter.submit": "اشترك",
+                "footer.copyright": "نرقي أكاديمي. جميع الحقوق محفوظة.",
+                "footer.terms": "الشروط والأحكام",
+                "footer.privacy": "سياسة الخصوصية",
+                
+                // عام
+                "language": "اللغة"
+            }
+        };
+
+        function loadLanguage(lang) {
+            // تحديث نص جميع العناصر
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                    
+                    // تحديث العناصر الأخرى
+                    if (element.hasAttribute('placeholder')) {
+                        element.setAttribute('placeholder', translations[lang][key]);
+                    }
+                    
+                    if (element.hasAttribute('title')) {
+                        element.setAttribute('title', translations[lang][key]);
+                    }
+                }
+            });
+            
+            // حفظ اللغة المفضلة
+            localStorage.setItem('preferred-language', lang);
+            
+            // تحديث زر اللغة النشط
+            document.querySelectorAll('[data-lang]').forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.textContent = getLanguageName(lang);
+                }
+            });
+            
+            // تحديث القائمة المنسدلة
+            const langSelect = document.querySelector('.language-selector');
+            if (langSelect) {
+                langSelect.value = lang;
+            }
+        }
+
+        function getLanguageName(code) {
+            const names = {
+                'ar': 'العربية',
+                'en': 'English',
+                'fr': 'Français',
+                'ur': 'اردو',
+                'id': 'Bahasa Indonesia'
+            };
+            return names[code] || code;
+        }
+
+        // تحميل اللغة المحفوظة عند بدء التشغيل
+        const savedLang = localStorage.getItem('preferred-language') || 'ar';
+        loadLanguage(savedLang);
+
+        // إضافة أنيميشنات CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            
+            .level-badge {
+                background: var(--gradient);
+                color: white;
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
