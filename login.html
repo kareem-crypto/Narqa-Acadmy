@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - نرقي أكاديمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
+    <style>
+        /* تنسيقات تسجيل الدخول */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px 50px;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.1) 0%, rgba(26, 71, 42, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/logo.jpeg') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .login-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease;
+            border: 1px solid rgba(45, 95, 46, 0.1);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .login-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+        }
+        
+        .login-logo span {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .login-header h1 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .login-header p {
+            color: var(--text-light);
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--light-color);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--light-color);
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(45, 95, 46, 0.1);
+        }
+        
+        .form-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        
+        .login-form input:focus + .form-icon {
+            color: var(--primary-color);
+        }
+        
+        .password-toggle {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .remember-me input {
+            width: auto;
+        }
+        
+        .forgot-password {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+        
+        .login-divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .login-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 45%;
+            height: 1px;
+            background: var(--light-color);
+        }
+        
+        .login-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 45%;
+            height: 1px;
+            background: var(--light-color);
+        }
+        
+        .social-login {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            border: 2px solid var(--light-color);
+            border-radius: var(--border-radius);
+            background: var(--white);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .social-btn.google:hover {
+            border-color: #DB4437;
+            color: #DB4437;
+        }
+        
+        .social-btn.facebook:hover {
+            border-color: #4267B2;
+            color: #4267B2;
+        }
+        
+        .register-link {
+            text-align: center;
+            color: var(--text-light);
+        }
+        
+        .register-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .login-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+            
+            .remember-forgot {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- زر العودة للرئيسية -->
+    <div class="back-home">
+        <a href="index.html" class="btn secondary-btn">
+            <i class="fas fa-arrow-right"></i> العودة للرئيسية
+        </a>
+    </div>
+
+    <!-- قسم تسجيل الدخول -->
+    <section class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي">
+                    <span>NARQA</span>
+                </div>
+                <h1>مرحباً بعودتك</h1>
+                <p>سجل دخولك للمتابعة في رحلتك مع القرآن</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    <i class="fas fa-envelope form-icon"></i>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                    <i class="fas fa-lock form-icon"></i>
+                    <button type="button" class="password-toggle" id="togglePassword">
+                        <i class="far fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="remember-forgot">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <span>تذكرني</span>
+                    </label>
+                    <a href="forgot-password.html" class="forgot-password">نسيت كلمة المرور؟</a>
+                </div>
+
+                <button type="submit" class="btn primary-btn login-btn">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+
+                <div class="login-divider">
+                    <span>أو سجل الدخول باستخدام</span>
+                </div>
+
+                <div class="social-login">
+                    <a href="#" class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        <span>جوجل</span>
+                    </a>
+                    <a href="#" class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>فيسبوك</span>
+                    </a>
+                </div>
+
+                <div class="register-link">
+                    <span>ليس لديك حساب؟</span>
+                    <a href="register.html">أنشئ حساب الآن</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // تسجيل الدخول
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            // تبديل عرض كلمة المرور
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+            });
+            
+            // معالجة تسجيل الدخول
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+                
+                // التحقق الأساسي
+                if (!email || !password) {
+                    showError('يرجى ملء جميع الحقول');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    showError('البريد الإلكتروني غير صالح');
+                    return;
+                }
+                
+                // هنا يمكن إضافة اتصال بالخادم
+                // للمثال، سنفترض أن البيانات صحيحة
+                if (email === "demo@narqa.com" && password === "123456") {
+                    // تسجيل الدخول الناجح
+                    showSuccess('تم تسجيل الدخول بنجاح!');
+                    
+                    // إعادة التوجيه للبروفايل بعد 2 ثانية
+                    setTimeout(() => {
+                        window.location.href = 'profile.html';
+                    }, 2000);
+                } else {
+                    showError('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+                }
+            });
+            
+            // دالة التحقق من البريد الإلكتروني
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // دالة عرض رسالة الخطأ
+            function showError(message) {
+                // إزالة أي رسالة سابقة
+                const existingError = document.querySelector('.error-message');
+                if (existingError) existingError.remove();
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = `
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>${message}</span>
+                `;
+                errorDiv.style.cssText = `
+                    background: rgba(220, 53, 69, 0.1);
+                    color: #dc3545;
+                    padding: 1rem;
+                    border-radius: var(--border-radius);
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                loginForm.insertBefore(errorDiv, loginForm.firstChild);
+                
+                // إضافة أنيميشن للتلاشي
+                setTimeout(() => {
+                    errorDiv.style.animation = 'fadeOut 0.3s ease';
+                    setTimeout(() => errorDiv.remove(), 300);
+                }, 5000);
+            }
+            
+            // دالة عرض رسالة النجاح
+            function showSuccess(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>${message}</span>
+                `;
+                successDiv.style.cssText = `
+                    background: rgba(45, 95, 46, 0.1);
+                    color: #2D5F2E;
+                    padding: 1rem;
+                    border-radius: var(--border-radius);
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    animation: fadeIn 0.3s ease;
+                `;
+                
+                loginForm.insertBefore(successDiv, loginForm.firstChild);
+            }
+            
+            // إضافة أنيميشنات CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes fadeOut {
+                    from {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                }
+                
+                .login-form input:invalid {
+                    border-color: #dc3545;
+                }
+                
+                .login-form input:valid:not(:placeholder-shown) {
+                    border-color: #2D5F2E;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // تأثيرات إضافية
+            const inputs = document.querySelectorAll('.login-form input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

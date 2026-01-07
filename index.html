@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نرقي-narqa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
+</head>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" class="logo-img">
+                <span class="logo-text">NARQA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" data-translate="nav.home">الرئيسية</a></li>
+                <li><a href="#features" data-translate="nav.features">المميزات</a></li>
+                <li><a href="#teachers" data-translate="nav.teachers">المحفظون</a></li>
+                <li><a href="#schedule" data-translate="nav.schedule">جدول</a></li>
+                <li><a href="#contact" data-translate="nav.contact" >اتصل</a></li>
+                <li><a href="profile.html" data-translate="nav.contact" >البروفايل</a></li>
+            </ul>
+            <div class="header-controls">
+                <div class="language-switcher">
+                    <button class="language-btn" data-lang="ar">العربية</button>
+                    <div class="language-dropdown">
+                        <button data-lang="en">English</button>
+                        <button data-lang="fr">Français</button>
+                        <button data-lang="ur">اردو</button>
+                        <button data-lang="id">Bahasa Indonesia</button>
+                    </div>
+                </div>
+                <!--                <div class="auth-buttons">
+                    <a href="login.html" class="btn login-btn" data-translate="nav.login">التسجيل</a>
+                </div>-->
+            </div>
+            <button class="mobile-menu-btn" aria-label="قائمة الجوال">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    <!-- القائمة الجانبية للجوال -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <button class="close-menu" aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
+            <div class="mobile-language">
+                <span data-translate="language">اللغة:</span>
+                <select class="language-selector">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="ur">اردو</option>
+                    <option value="id">Bahasa Indonesia</option>
+                </select>
+            </div>
+        </div>
+        <ul>
+            <li><a href="#home" data-translate="nav.home">الرئيسية</a></li>
+            <li><a href="#features" data-translate="nav.features">المميزات</a></li>
+            <li><a href="#teachers" data-translate="nav.teachers">المحفظون</a></li>
+            <li><a href="#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
+            <li><a href="#contact" data-translate="nav.contact">اتصل بنا</a></li>
+            <li><a href="profile.html" data-translate="nav.about">البروفايل</a></li>
+            <li><a href="#" class="mobile-login" data-translate="nav.login">تسجيل الدخول</a></li>
+            <li><a href="#" class="mobile-register" data-translate="nav.register">إنشاء حساب</a></li>
+        </ul>
+    </div>
+
+    <!-- قسم الرئيسية -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-translate="hero.title">تعلم القرآن الكريم بسهولة مع أفضل المحفظين</h1>
+                <p data-translate="hero.subtitle">منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع متابعة التقدم وإمكانية حجز جلسات مباشرة مع مشايخ متخصصين.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn primary-btn" data-translate="hero.cta1">ابدأ التعلم الآن</a>
+                    <a href="#" class="btn secondary-btn" data-translate="hero.cta2">تعرف على المزيد</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span data-translate="stats.students">طالب</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span data-translate="stats.teachers">محفظ</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500</span>
+                        <span data-translate="stats.sessions">جلسة</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/logo.jpeg" alt="تحفيظ القرآن" data-translate="hero.image_alt" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المميزات -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="features.title">مميزات المنصة</h2>
+                <p class="section-subtitle" data-translate="features.subtitle">كل ما تحتاجه لتحفيظ القرآن الكريم في مكان واحد</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 data-translate="features.feature1.title">جلسات مباشرة</h3>
+                    <p data-translate="features.feature1.desc">جلسات تحفيظ مباشرة عبر Zoom أو Skype مع أفضل المحفظين</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-translate="features.feature2.title">متابعة التقدم</h3>
+                    <p data-translate="features.feature2.desc">نظام متكامل لمتابعة تقدمك في الحفظ والمراجعة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 data-translate="features.feature3.title">جدولة مرنة</h3>
+                    <p data-translate="features.feature3.desc">اختر المواعيد المناسبة لك من جدول المحفظ</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 data-translate="features.feature4.title">نظام تحفيزي</h3>
+                    <p data-translate="features.feature4.desc">حصولك على شهادات ونقاط عند إتمام أجزاء من القرآن</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-quran"></i>
+                    </div>
+                    <h3 data-translate="features.feature5.title">تلاوات متنوعة</h3>
+                    <p data-translate="features.feature5.desc">اختيار بين القراءات العشر وروايات متعددة</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 data-translate="features.feature6.title">معلمون معتمدون</h3>
+                    <p data-translate="features.feature6.desc">محفظون معتمدون من الأزهر والجامعات الإسلامية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المحفظون -->
+    <section id="teachers" class="teachers-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="teachers.title">المحفظون المعتمدون</h2>
+                <p class="section-subtitle" data-translate="teachers.subtitle">تعلم من أفضل المحفظين المعتمدين</p>
+            </div>
+            <div class="teachers-slider">
+                    <div class="teacher-card">
+    <div class="teacher-img-container">
+        <img src="img/person.jpeg" alt="المحفظ" loading="lazy">
+        <!-- إضافة علامة التوثيق هنا -->
+        <div class="verified-badge">
+            <i class="fas fa-check-circle"></i>
+            <span data-translate="teachers.verified"></span>
+        </div>
+    </div>
+    <h3 data-translate="teachers.teacher1.name">الشيخ عبدالرحمن راضي</h3>
+    <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">إجازة في رواية حفص عن عاصم</p>
+    <div class="teacher-rating">
+        <!-- بقية المحتوى -->
+    </div>
+    <a href="https://wa.me/01202988181?text=مرحبا%20نرقي" class="btn teacher-btn" data-translate="teachers.book_button">حجز جلسة</a>
+</div>
+
+<div class="teacher-card">
+    <div class="teacher-img-container">
+        <img src="img/logo2.jpeg" alt="المحفظ" loading="lazy">
+        <!-- إضافة علامة التوثيق هنا -->
+        <div class="verified-badge">
+            <i class="fas fa-check-circle"></i>
+            <span data-translate="teachers.verified"></span>
+        </div>
+    </div>
+    <h3 data-translate="teachers.teacher1.name">سيتوفر محفظين اخرين قريبا</h3>
+    <p class="teacher-qualification" data-translate="teachers.teacher1.qualification">برجاء الانتظار قريبا سيتوفر المحفظين</p>
+    <div class="teacher-rating">
+        <!-- بقية المحتوى -->
+    </div>
+</div>
+                <!-- باقي بطاقات المحفظين بنفس الهيكل -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم جدول الحصص -->
+    <section id="schedule" class="schedule-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="schedule.title">جدول الحصص المتاحة</h2>
+                <p class="section-subtitle" data-translate="schedule.subtitle">اختر الوقت المناسب لك وابدأ رحلتك مع القرآن الكريم</p>
+            </div>
+            <div class="schedule-tabs">
+                <button class="tab-btn active" data-day="saturday" data-translate="days.saturday">السبت</button>
+                <button class="tab-btn" data-day="sunday" data-translate="days.sunday">الأحد</button>
+                <button class="tab-btn" data-day="monday" data-translate="days.monday">الإثنين</button>
+                <button class="tab-btn" data-day="tuesday" data-translate="days.tuesday">الثلاثاء</button>
+                <button class="tab-btn" data-day="wednesday" data-translate="days.wednesday">الأربعاء</button>
+                <button class="tab-btn" data-day="thursday" data-translate="days.thursday">الخميس</button>
+                <button class="tab-btn" data-day="friday" data-translate="days.friday">الجمعة</button>
+            </div>
+            <div class="schedule-table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th data-translate="schedule.table.time">الوقت</th>
+                            <th data-translate="schedule.table.teacher">المحفظ</th>
+                            <th data-translate="schedule.table.level">المستوى</th>
+                            <th data-translate="schedule.table.type">نوع الجلسة</th>
+                            <th data-translate="schedule.table.action">الإجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-data">
+                        <!-- سيتم ملؤه بالجافاسكريبت -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الإحصائيات -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span data-translate="stats.students">طالب</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-user-tie"></i>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="13">0</span>
+                        <span data-translate="stats.teachers">محفظ</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span data-translate="stats.hours">ساعة تعليم</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-certificate"></i>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="150">0</span>
+                        <span data-translate="stats.certificates">شهادة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم اتصل بنا -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="contact.title">تواصل معنا</h2>
+                <p class="section-subtitle" data-translate="contact.subtitle">نحن هنا لمساعدتك في أي استفسار</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4 data-translate="contact.email">البريد الإلكتروني</h4>
+                            <a href="mailto:Narqaacademy@gmail.com">Narqaacademy@gmail.com</a><br>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4 data-translate="contact.phone">الهاتف</h4>
+                            <a href="tel:+201060785754">+201060785754</a><br>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4 data-translate="contact.address">العنوان</h4>
+                            <span>جمهورية مصر العربية _ الاسكندرية</span>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="اسمك الكريم" data-translate="contact.form.name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="بريدك الإلكتروني" data-translate="contact.form.email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="الموضوع" data-translate="contact.form.subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="رسالتك" data-translate="contact.form.message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn" data-translate="contact.form.submit">إرسال الرسالة</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" loading="lazy">
+                        <span>نرقي أكاديمي</span>
+                    </div>
+                    <p data-translate="footer.about.desc">منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع أفضل المحفظين والمعلمين.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 data-translate="footer.links.title">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home" data-translate="nav.home">الرئيسية</a></li>
+                        <li><a href="#features" data-translate="nav.features">المميزات</a></li>
+                        <li><a href="#teachers" data-translate="nav.teachers">المحفظون</a></li>
+                        <li><a href="#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
+                        <li><a href="#contact" data-translate="nav.contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 data-translate="footer.services.title">خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" data-translate="footer.services.service1">تحفيظ القرآن</a></li>
+                        <li><a href="#" data-translate="footer.services.service2">مراجعة الحفظ</a></li>
+                        <li><a href="#" data-translate="footer.services.service3">تعليم التجويد</a></li>
+                        <li><a href="#" data-translate="footer.services.service4">القراءات العشر</a></li>
+                        <li><a href="#" data-translate="footer.services.service5">دورات التفسير</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 data-translate="footer.newsletter.title">النشرة البريدية</h3>
+                    <p data-translate="footer.newsletter.desc">اشترك ليصلك كل جديد عن المنصة والعروض الخاصة.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" data-translate="footer.newsletter.placeholder" required>
+                        <button type="submit" aria-label="إرسال">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-translate="footer.newsletter.submit">اشترك</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> <span data-translate="footer.copyright">نرقي أكاديمي. جميع الحقوق محفوظة.</span></p>
+                <div class="footer-legal">
+                    <a href="#" data-translate="footer.terms">الشروط والأحكام</a>
+                    <a href="#" data-translate="footer.privacy">سياسة الخصوصية</a>
+
+                    <a href="https://wa.me/01207771639?text=what are you looking for" data-translate="footer.privacy">kareem ibrahem</a>                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="scroll-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+    <script src="js/translations.js"></script>
+</body>
+</html>
