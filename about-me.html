@@ -2533,47 +2533,159 @@
     </button>
 
     <!-- تذييل الصفحة -->
-    <footer class="about-footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي">
+                        <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" loading="lazy">
                         <span>نرقي أكاديمي</span>
                     </div>
-                    <p>منصة تعليمية رائدة في تعليم القرآن الكريم عبر الإنترنت، نسعى لتمكين المسلمين حول العالم من حفظ كتاب الله وتلاوته بتجويد صحيح.</p>
+                    <p data-translate="footer.about.desc">منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع أفضل المحفظين والمعلمين.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/01202988181" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-links">
-                    <h3>روابط سريعة</h3>
+                    <h3 data-translate="footer.links.title">روابط سريعة</h3>
                     <ul>
-                        <li><a href="index.html"><i class="fas fa-home"></i> الصفحة الرئيسية</a></li>
-                        <li><a href="learning-path.html"><i class="fas fa-graduation-cap"></i> ابدأ التعلم</a></li>
-                        <li><a href="index.html#teachers"><i class="fas fa-chalkboard-teacher"></i> المعلمون</a></li>
-                        <li><a href="index.html#schedule"><i class="fas fa-calendar-alt"></i> جدول الحصص</a></li>
-                        <li><a href="index.html#contact"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                        <li><a href="index.html#home" data-translate="nav.home">الرئيسية</a></li>
+                        <li><a href="index.html#features" data-translate="nav.features">المميزات</a></li>
+                        <li><a href="index.html#teachers" data-translate="nav.teachers">المحفظون</a></li>
+                        <li><a href="index.html#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
+                        <li><a href="index.html#contact" data-translate="nav.contact">اتصل بنا</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-contact">
-                    <h3>معلومات التواصل</h3>
-                    <p><i class="fas fa-map-marker-alt"></i>الاسكندرية جمهورية مصر العربية</p>
-                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+201202988181">+201202988181</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:narqaacademy@gmail.com">narqaacademy@gmail.com</a></p>
-                    <p><i class="fas fa-clock"></i> الأحد - الخميس: 8 ص - 10 م</p>
+                <div class="footer-links">
+                    <h3 data-translate="footer.services.title">خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" data-translate="footer.services.service1">تحفيظ القرآن</a></li>
+                        <li><a href="#" data-translate="footer.services.service2">مراجعة الحفظ</a></li>
+                        <li><a href="#" data-translate="footer.services.service3">تعليم التجويد</a></li>
+                        <li><a href="#" data-translate="footer.services.service4">القراءات العشر</a></li>
+                        <li><a href="#" data-translate="footer.services.service5">دورات التفسير</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 data-translate="footer.newsletter.title">النشرة البريدية</h3>
+                    <p data-translate="footer.newsletter.desc">اشترك ليصلك كل جديد عن المنصة والعروض الخاصة.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" data-translate="footer.newsletter.placeholder" required>
+                        <button type="submit" aria-label="إرسال">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-translate="footer.newsletter.submit">اشترك</span>
+                        </button>
+                    </form>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>© 2024 نرقي أكاديمي. جميع الحقوق محفوظة.</p>
-                <p>صمم بـ <span class="heart">❤️</span> لخدمة كتاب الله تعالى</p>
+            <!-- قسم إعلان المصمم - ADDED -->
+            <div class="designer-ad" style="
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: var(--border-radius);
+                padding: 1.5rem;
+                margin: 2rem 0 3rem;
+                text-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                animation: fadeIn 1s ease;
+            ">
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+                    flex-wrap: wrap;
+                ">
+                    <div style="
+                        background: var(--white);
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 1.5rem;
+                        color: var(--primary-color);
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                        transition: var(--transition);
+                    " class="designer-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div style="text-align: right;">
+                        <h4 style="
+                            color: var(--white);
+                            margin-bottom: 0.5rem;
+                            font-size: 1.2rem;
+                        ">صمم الموقع بواسطة</h4>
+                        <p style="
+                            color: rgba(255, 255, 255, 0.95);
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            margin-bottom: 0.3rem;
+                        ">
+                            <i class="fas fa-user-tie" style="margin-left: 0.5rem;"></i>
+                            En.kareem ibrahem
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.8rem;
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 0.8rem 1.5rem;
+                    border-radius: var(--border-radius);
+                    max-width: 300px;
+                    margin: 0 auto;
+                    transition: var(--transition);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                " class="whatsapp-link">
+                    <i class="fab fa-whatsapp" style="
+                        color: #25D366;
+                        font-size: 1.3rem;
+                    "></i>
+                    <a href="https://wa.me/+201207771639" target="_blank" style="
+                        color: var(--white);
+                        text-decoration: none;
+                        font-weight: 600;
+                        font-size: 1.1rem;
+                        transition: var(--transition);
+                    " onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='var(--white)'">
+                        +20 120 777 1639
+                    </a>
+                    <i class="fas fa-external-link-alt" style="
+                        color: rgba(255, 255, 255, 0.7);
+                        font-size: 0.9rem;
+                    "></i>
+                </div>
+                
+                <p style="
+                    color: rgba(255, 255, 255, 0.8);
+                    font-size: 0.9rem;
+                    margin-top: 1rem;
+                    font-style: italic;
+                ">
+                    <i class="fas fa-palette" style="margin-left: 0.5rem;"></i>
+                    تصميم مواقع احترافية وتطبيقات ويب متكاملة
+                </p>
+            </div>
+            <!-- نهاية قسم إعلان المصمم -->
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> <span data-translate="footer.copyright">نرقي أكاديمي. جميع الحقوق محفوظة.</span></p>
+                <div class="footer-legal">
+                    <a href="#" data-translate="footer.terms">الشروط والأحكام</a>
+                    <a href="#" data-translate="footer.privacy">سياسة الخصوصية</a>
+                </div>
             </div>
         </div>
     </footer>
