@@ -9,179 +9,912 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
     <style>
-        /* تنسيقات إضافية للبروفايل */
-        .profile-container {
-            padding: 120px 0 80px;
+        /* تنسيقات البروفايل */
+        :root {
+            --primary-color: #2D5F2E;
+            --secondary-color: #F0A500;
+            --accent-color: #1A472A;
+            --light-color: #F8F9FA;
+            --dark-color: #2C3E50;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--light-color);
             min-height: 100vh;
-            background: linear-gradient(135deg, rgba(45, 95, 46, 0.05) 0%, rgba(26, 71, 42, 0.05) 100%);
         }
-        
-        .profile-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid var(--white);
-            box-shadow: var(--shadow);
-            margin: 0 auto 1.5rem;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .profile-avatar img {
+
+        .container {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .avatar-upload {
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
             position: absolute;
             bottom: 0;
             right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* زر العودة للرئيسية */
+        .back-home {
+            text-decoration: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        /* قسم البروفايل */
+        .profile-container {
+            padding: 140px 0 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.05) 0%, rgba(26, 71, 42, 0.05) 100%);
+        }
+
+        .profile-header {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease;
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 150px;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .profile-header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-avatar {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .avatar-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: var(--gradient);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .avatar-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .avatar-upload-btn {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 50px;
+            height: 50px;
             background: var(--gradient);
             color: var(--white);
-            width: 40px;
-            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 2;
         }
-        
+
+        .avatar-upload-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
         .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .profile-title {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-badge {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .profile-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-3px);
+        }
+
+        /* معلومات البروفايل */
+        .profile-sections {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
         }
-        
-        .profile-card {
+
+        .profile-section {
             background: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
+            border-radius: 20px;
             box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+            animation: fadeInUp 0.5s ease;
         }
-        
-        .profile-card h3 {
-            color: var(--accent-color);
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--light-color);
         }
-        
-        .info-group {
-            margin-bottom: 1.5rem;
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
+
+        .section-title i {
+            font-size: 1.2rem;
+        }
+
+        .edit-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .edit-btn:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--light-color);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(45, 95, 46, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
         .info-label {
             display: block;
             color: var(--text-light);
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
-        
+
         .info-value {
             font-weight: 500;
             color: var(--text-color);
+            word-break: break-word;
         }
-        
-        .edit-btn {
-            background: var(--light-color);
-            color: var(--text-color);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        
-        .edit-btn:hover {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-        
+
+        /* قسم التقدم */
         .progress-section {
-            margin-top: 2rem;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.5s ease 0.2s both;
         }
-        
+
+        .progress-items {
+            display: grid;
+            gap: 2rem;
+        }
+
         .progress-item {
             margin-bottom: 1.5rem;
         }
-        
+
         .progress-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
-        
+
+        .progress-title {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .progress-percentage {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
         .progress-bar {
             height: 10px;
             background: var(--light-color);
             border-radius: 5px;
             overflow: hidden;
+            position: relative;
         }
-        
+
         .progress-fill {
             height: 100%;
             background: var(--gradient);
             border-radius: 5px;
             transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        /* قسم الجلسات */
+        .sessions-section {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            animation: fadeInUp 0.5s ease 0.3s both;
+        }
+
         .sessions-list {
-            list-style: none;
+            display: grid;
+            gap: 1rem;
         }
-        
+
         .session-item {
             background: var(--light-color);
-            padding: 1rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
-            margin-bottom: 1rem;
             border-left: 4px solid var(--primary-color);
-        }
-        
-        .session-header {
+            transition: var(--transition);
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .session-item:hover {
+            transform: translateX(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .session-content {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .session-title {
+            font-weight: 500;
+            color: var(--text-color);
             margin-bottom: 0.5rem;
         }
-        
-        .session-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+
+        .session-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
-        
+
+        .session-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .session-status {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         .status-completed {
             background: rgba(45, 95, 46, 0.1);
             color: var(--primary-color);
         }
-        
+
         .status-upcoming {
             background: rgba(240, 165, 0, 0.1);
             color: var(--secondary-color);
         }
-        
-        .profile-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
+
+        .status-cancelled {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
         }
-        
+
+        /* قسم النشاط */
+        .activity-section {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            animation: fadeInUp 0.5s ease 0.4s both;
+        }
+
+        .activity-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .activity-item:hover {
+            background: var(--light-color);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-text {
+            margin-bottom: 0.3rem;
+        }
+
+        .activity-time {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        /* الأنيميشن */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* المودال */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--light-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* تنسيقات خاصة للأزرار داخل المودال */
+        .modal-btn {
+            min-width: 100px;
+        }
+
+        /* التجاوب */
+        @media (max-width: 992px) {
+            .profile-header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .profile-avatar {
+                width: 180px;
+                height: 180px;
+            }
+
+            .profile-name {
+                font-size: 2rem;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+
+            .profile-actions {
+                justify-content: center;
+            }
+
+            .session-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
         @media (max-width: 768px) {
-            .profile-info {
+            .nav-links {
+                display: none;
+            }
+
+            .profile-container {
+                padding: 120px 0 40px;
+            }
+
+            .profile-header,
+            .profile-section,
+            .progress-section,
+            .sessions-section,
+            .activity-section {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .profile-name {
+                font-size: 1.8rem;
+            }
+
+            .profile-sections {
                 grid-template-columns: 1fr;
             }
-            
+
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-height: 95vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .profile-header {
+                padding: 1.5rem 1rem;
+            }
+
+            .profile-avatar {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+
+            .profile-stats {
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
             .profile-actions {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .session-details {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .modal-btn {
+                width: 100%;
             }
         }
     </style>
@@ -192,561 +925,1321 @@
         <div class="container">
             <a href="index.html" class="logo">
                 <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" class="logo-img">
-                <span class="logo-text">NARQA</span>
+                <span>NARQA</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html#home" data-translate="nav.home">الرئيسية</a></li>
-                <li><a href="index.html#features" data-translate="nav.features">المميزات</a></li>
-                <li><a href="index.html#teachers" data-translate="nav.teachers">المحفظون</a></li>
-                <li><a href="index.html#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
-                <li><a href="index.html#contact" data-translate="nav.contact">اتصل بنا</a></li>
+                <li><a href="index.html#home">الرئيسية</a></li>
+                <li><a href="index.html#features">المميزات</a></li>
+                <li><a href="index.html#teachers">المحفظون</a></li>
+                <li><a href="index.html#schedule">جدول الحصص</a></li>
+                <li><a href="index.html#contact">اتصل بنا</a></li>
             </ul>
             <div class="header-controls">
-                <div class="language-switcher">
-                    <button class="language-btn" data-lang="ar">العربية</button>
-                    <div class="language-dropdown">
-                        <button data-lang="en">English</button>
-                        <button data-lang="fr">Français</button>
-                        <button data-lang="ur">اردو</button>
-                        <button data-lang="id">Bahasa Indonesia</button>
-                    </div>
-                </div>
-                <a href="index.html" class="btn secondary-btn">العودة للرئيسية</a>
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-arrow-right"></i> العودة للرئيسية
+                </a>
             </div>
-            <button class="mobile-menu-btn" aria-label="قائمة الجوال">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
-
-    <!-- القائمة الجانبية للجوال -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <button class="close-menu" aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
-            <div class="mobile-language">
-                <span data-translate="language">اللغة:</span>
-                <select class="language-selector">
-                    <option value="ar">العربية</option>
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                    <option value="ur">اردو</option>
-                    <option value="id">Bahasa Indonesia</option>
-                </select>
-            </div>
-        </div>
-        <ul>
-            <li><a href="index.html#home" data-translate="nav.home">الرئيسية</a></li>
-            <li><a href="index.html#features" data-translate="nav.features">المميزات</a></li>
-            <li><a href="index.html#teachers" data-translate="nav.teachers">المحفظون</a></li>
-            <li><a href="index.html#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
-            <li><a href="index.html#contact" data-translate="nav.contact">اتصل بنا</a></li>
-            <li><a href="login.html" data-translate="nav.login">تسجيل الدخول</a></li>
-        </ul>
-    </div>
 
     <!-- قسم البروفايل -->
     <section class="profile-container">
         <div class="container">
+            <!-- رأس البروفايل -->
             <div class="profile-header">
-                <div class="profile-avatar">
-                    <img src="img/person.jpeg" alt="صورة المستخدم" id="avatar-img">
-                    <div class="avatar-upload" id="upload-avatar">
-                        <i class="fas fa-camera"></i>
+                <div class="profile-header-content">
+                    <div class="profile-avatar">
+                        <div class="avatar-container">
+                            <img id="profileAvatar" alt="صورة المستخدم">
+                        </div>
+                        <button class="avatar-upload-btn" id="changeAvatarBtn">
+                            <i class="fas fa-camera"></i>
+                        </button>
                     </div>
-                </div>
-                <h1 id="user-name">عبدالرحمن راضي</h1>
-                <p class="user-email" id="user-email">abdelrahman@gmail.com</p>
-                <div class="profile-actions">
-                    <button class="btn primary-btn" id="edit-profile">تعديل البروفايل</button>
-                    <button class="btn secondary-btn" id="change-password">تغيير كلمة المرور</button>
-                    <button class="btn" style="background: #dc3545; color: white;" id="logout-btn">تسجيل الخروج</button>
+
+                    <div class="profile-info">
+                        <h1 class="profile-name" id="profileName">عبدالرحمن راضي</h1>
+                        <p class="profile-title" id="profileTitle">طالب في نرقي أكاديمي</p>
+                        <div class="profile-badge" id="profileLevel">مبتدئ</div>
+                        
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <span class="stat-number" id="statSessions">0</span>
+                                <span class="stat-label">الجلسات</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-number" id="statHours">0</span>
+                                <span class="stat-label">ساعة تعليم</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-number" id="statParts">0</span>
+                                <span class="stat-label">أجزاء محفوظة</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="stat-number" id="statCertificates">0</span>
+                                <span class="stat-label">شهادات</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="editProfileBtn">
+                                <i class="fas fa-edit"></i> تعديل البروفايل
+                            </button>
+                            <button class="btn btn-secondary" id="changePasswordBtn">
+                                <i class="fas fa-key"></i> تغيير كلمة المرور
+                            </button>
+                            <button class="btn btn-danger" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="profile-info">
-                <div class="profile-card">
-                    <h3>المعلومات الشخصية</h3>
-                    <div class="info-group">
-                        <span class="info-label">الاسم الكامل</span>
-                        <span class="info-value" id="info-fullname">عبدالرحمن محمد راضي</span>
+            <!-- معلومات البروفايل -->
+            <div class="profile-sections">
+                <!-- المعلومات الشخصية -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-user-circle"></i> المعلومات الشخصية
+                        </h3>
+                        <button class="edit-btn" data-section="personal">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">البريد الإلكتروني</span>
-                        <span class="info-value" id="info-email">abdelrahman@gmail.com</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">رقم الهاتف</span>
-                        <span class="info-value" id="info-phone">+20123456789</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">البلد</span>
-                        <span class="info-value" id="info-country">مصر</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">تاريخ الميلاد</span>
-                        <span class="info-value" id="info-birthdate">15/03/1995</span>
-                    </div>
-                </div>
-
-                <div class="profile-card">
-                    <h3>معلومات التعلم</h3>
-                    <div class="info-group">
-                        <span class="info-label">المستوى الحالي</span>
-                        <span class="info-value" id="info-level">متوسط</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">المحفظ</span>
-                        <span class="info-value" id="info-teacher">الشيخ عبدالرحمن</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">تاريخ الانضمام</span>
-                        <span class="info-value" id="info-join-date">01/01/2024</span>
-                    </div>
-                    
-                    <div class="progress-section">
-                        <h4>تقدم الحفظ</h4>
-                        <div class="progress-item">
-                            <div class="progress-header">
-                                <span>الجزء الأول</span>
-                                <span>75%</span>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user"></i>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 75%"></div>
+                            <div class="info-content">
+                                <span class="info-label">الاسم الكامل</span>
+                                <span class="info-value" id="infoFullName">عبدالرحمن محمد راضي</span>
                             </div>
                         </div>
-                        <div class="progress-item">
-                            <div class="progress-header">
-                                <span>الجزء الثاني</span>
-                                <span>40%</span>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 40%"></div>
+                            <div class="info-content">
+                                <span class="info-label">البريد الإلكتروني</span>
+                                <span class="info-value" id="infoEmail">abdelrahman@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">رقم الهاتف</span>
+                                <span class="info-value" id="infoPhone">+20123456789</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-birthday-cake"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">تاريخ الميلاد</span>
+                                <span class="info-value" id="infoBirthDate">15/03/1995</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-venus-mars"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">النوع</span>
+                                <span class="info-value" id="infoGender">ذكر</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">العنوان</span>
+                                <span class="info-value" id="infoAddress">مصر، الإسكندرية</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="profile-card">
-                    <h3>الجلسات القادمة</h3>
-                    <ul class="sessions-list" id="upcoming-sessions">
-                        <!-- سيتم ملؤه بالجافاسكريبت -->
-                    </ul>
+                <!-- معلومات التعلم -->
+                <div class="profile-section">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-graduation-cap"></i> معلومات التعلم
+                        </h3>
+                        <button class="edit-btn" data-section="learning">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">المستوى الحالي</span>
+                                <span class="info-value" id="infoLearningLevel">مبتدئ</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">المحفظ الحالي</span>
+                                <span class="info-value" id="infoTeacher">الشيخ عبدالرحمن راضي</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">تاريخ الانضمام</span>
+                                <span class="info-value" id="infoJoinDate">01/01/2024</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">أهداف التعلم</span>
+                                <span class="info-value" id="infoLearningGoals">حفظ القرآن الكريم كاملاً، تعلم أحكام التجويد</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">أوقات التواصل</span>
+                                <span class="info-value" id="infoAvailability">المساء، عطلات نهاية الأسبوع</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="info-content">
+                                <span class="info-label">محفظ مفضل</span>
+                                <span class="info-value" id="infoPreferredTeacher">الشيخ عبدالرحمن راضي</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="profile-card">
-                    <h3>الإحصائيات</h3>
-                    <div class="info-group">
-                        <span class="info-label">إجمالي الجلسات</span>
-                        <span class="info-value">24 جلسة</span>
+            <!-- قسم التقدم -->
+            <div class="progress-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-bar"></i> تقدم الحفظ
+                    </h3>
+                    <button class="edit-btn" data-section="progress">
+                        <i class="fas fa-sync-alt"></i> تحديث
+                    </button>
+                </div>
+                <div class="progress-items">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">الجزء الأول</span>
+                            <span class="progress-percentage" id="progressPart1">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill1" style="width: 75%"></div>
+                        </div>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">ساعات التعلم</span>
-                        <span class="info-value">48 ساعة</span>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">الجزء الثاني</span>
+                            <span class="progress-percentage" id="progressPart2">40%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill2" style="width: 40%"></div>
+                        </div>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">الأجزاء المحفوظة</span>
-                        <span class="info-value">1.5 جزء</span>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-title">الجزء الثالث</span>
+                            <span class="progress-percentage" id="progressPart3">15%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill3" style="width: 15%"></div>
+                        </div>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">الشهادات</span>
-                        <span class="info-value">3 شهادات</span>
-                    </div>
+                </div>
+            </div>
+
+            <!-- قسم الجلسات القادمة -->
+            <div class="sessions-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-calendar-check"></i> الجلسات القادمة
+                    </h3>
+                    <button class="btn btn-primary" id="bookSessionBtn">
+                        <i class="fas fa-plus"></i> حجز جلسة جديدة
+                    </button>
+                </div>
+                <div class="sessions-list" id="upcomingSessions">
+                    <!-- سيتم ملؤه بالجافاسكريبت -->
+                </div>
+            </div>
+
+            <!-- قسم النشاط الأخير -->
+            <div class="activity-section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i> النشاط الأخير
+                    </h3>
+                </div>
+                <div class="activity-list" id="recentActivity">
+                    <!-- سيتم ملؤه بالجافاسكريبت -->
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- تذييل الصفحة -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <div class="footer-logo">
-                        <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" loading="lazy">
-                        <span>نرقي أكاديمي</span>
-                    </div>
-                    <p data-translate="footer.about.desc">منصة متكاملة لتحفيظ القرآن الكريم عبر الإنترنت مع أفضل المحفظين والمعلمين.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/narqaacademy?utm_source=qr&igsh=NjhlamE4OTE0dno4" aria-label="إنستجرام"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="تيكنوك"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h3 data-translate="footer.links.title">روابط سريعة</h3>
-                    <ul>
-                        <li><a href="index.html#home" data-translate="nav.home">الرئيسية</a></li>
-                        <li><a href="index.html#features" data-translate="nav.features">المميزات</a></li>
-                        <li><a href="index.html#teachers" data-translate="nav.teachers">المحفظون</a></li>
-                        <li><a href="index.html#schedule" data-translate="nav.schedule">جدول الحصص</a></li>
-                        <li><a href="index.html#contact" data-translate="nav.contact">اتصل بنا</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h3 data-translate="footer.services.title">خدماتنا</h3>
-                    <ul>
-                        <li><a href="#" data-translate="footer.services.service1">تحفيظ القرآن</a></li>
-                        <li><a href="#" data-translate="footer.services.service2">مراجعة الحفظ</a></li>
-                        <li><a href="#" data-translate="footer.services.service3">تعليم التجويد</a></li>
-                        <li><a href="#" data-translate="footer.services.service4">القراءات العشر</a></li>
-                        <li><a href="#" data-translate="footer.services.service5">دورات التفسير</a></li>
-                    </ul>
-                </div>
-                <div class="footer-newsletter">
-                    <h3 data-translate="footer.newsletter.title">النشرة البريدية</h3>
-                    <p data-translate="footer.newsletter.desc">اشترك ليصلك كل جديد عن المنصة والعروض الخاصة.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="بريدك الإلكتروني" data-translate="footer.newsletter.placeholder" required>
-                        <button type="submit" aria-label="إرسال">
-                            <i class="fas fa-paper-plane"></i>
-                            <span data-translate="footer.newsletter.submit">اشترك</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year">2025</span> <span data-translate="footer.copyright">نرقي أكاديمي. جميع الحقوق محفوظة.</span></p>
-                <div class="footer-legal">
-                    <a href="#" data-translate="footer.terms">الشروط والأحكام</a>
-                    <a href="#" data-translate="footer.privacy">سياسة الخصوصية</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- زر العودة للأعلى -->
     <button class="scroll-to-top" aria-label="العودة للأعلى">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="js/main.js"></script>
-    <script src="js/translations.js"></script>
+    <!-- مودال تعديل البروفايل -->
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> تعديل البروفايل</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="editFirstName">الاسم الأول *</label>
+                            <input type="text" id="editFirstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editLastName">اسم العائلة *</label>
+                            <input type="text" id="editLastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editPhone">رقم الهاتف *</label>
+                        <input type="tel" id="editPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editBirthDate">تاريخ الميلاد</label>
+                        <input type="date" id="editBirthDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editGender">النوع</label>
+                        <select id="editGender">
+                            <option value="">اختر النوع</option>
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editCountry">الدولة</label>
+                        <select id="editCountry">
+                            <option value="">اختر الدولة</option>
+                            <option value="مصر">مصر</option>
+                            <option value="السعودية">السعودية</option>
+                            <option value="الإمارات">الإمارات</option>
+                            <option value="الكويت">الكويت</option>
+                            <option value="الأردن">الأردن</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editCity">المدينة</label>
+                        <input type="text" id="editCity">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-close">إلغاء</button>
+                <button class="btn btn-primary" id="saveProfileBtn">حفظ التعديلات</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال تعديل معلومات التعلم -->
+    <div class="modal-overlay" id="editLearningModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-graduation-cap"></i> تعديل معلومات التعلم</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editLearningForm">
+                    <div class="form-group">
+                        <label>المستوى الحالي *</label>
+                        <div class="level-options">
+                            <label>
+                                <input type="radio" name="editLevel" value="beginner">
+                                <span>مبتدئ</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="editLevel" value="intermediate">
+                                <span>متوسط</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="editLevel" value="advanced">
+                                <span>متقدم</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="editLevel" value="hafiz">
+                                <span>حافظ</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editLearningGoals">أهداف التعلم</label>
+                        <select id="editLearningGoals" multiple>
+                            <option value="memorization">حفظ القرآن الكريم كاملاً</option>
+                            <option value="review">مراجعة ما تم حفظه</option>
+                            <option value="tajweed">تعلم أحكام التجويد</option>
+                            <option value="qiraat">تعلم القراءات العشر</option>
+                            <option value="certification">الحصول على إجازة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editPreferredTeacher">محفظ مفضل</label>
+                        <input type="text" id="editPreferredTeacher">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editAvailability">أوقات التواصل المناسبة</label>
+                        <select id="editAvailability" multiple>
+                            <option value="morning">الصباح</option>
+                            <option value="afternoon">الظهر</option>
+                            <option value="evening">المساء</option>
+                            <option value="night">الليل</option>
+                            <option value="weekend">عطلات نهاية الأسبوع</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editPreviousExperience">خبرة سابقة</label>
+                        <textarea id="editPreviousExperience" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-close">إلغاء</button>
+                <button class="btn btn-primary" id="saveLearningBtn">حفظ التعديلات</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال تغيير كلمة المرور -->
+    <div class="modal-overlay" id="changePasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-key"></i> تغيير كلمة المرور</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm">
+                    <div class="form-group">
+                        <label for="currentPassword">كلمة المرور الحالية *</label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="newPassword">كلمة المرور الجديدة *</label>
+                        <input type="password" id="newPassword" required>
+                        <div class="password-strength">
+                            <div class="strength-meter" id="newPasswordStrength"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmNewPassword">تأكيد كلمة المرور الجديدة *</label>
+                        <input type="password" id="confirmNewPassword" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-close">إلغاء</button>
+                <button class="btn btn-primary" id="savePasswordBtn">تغيير كلمة المرور</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // دالة خاصة بصفحة البروفايل
-        document.addEventListener('DOMContentLoaded', function() {
-            // تحميل بيانات الجلسات القادمة
-            loadUpcomingSessions();
+        // ========== نظام البروفايل الكامل ==========
+        class ProfileSystem {
+            constructor() {
+                this.userData = null;
+                this.avatarData = null;
+                this.init();
+            }
             
-            // زر رفع الصورة
-            document.getElementById('upload-avatar').addEventListener('click', function() {
+            init() {
+                this.loadUserData();
+                this.setupEventListeners();
+                this.setupScrollToTop();
+                this.renderProfile();
+                this.loadSessions();
+                this.loadRecentActivity();
+            }
+            
+            loadUserData() {
+                // تحميل بيانات المستخدم من localStorage
+                const profileData = localStorage.getItem('narqa-user-profile');
+                const avatarData = localStorage.getItem('narqa-user-avatar');
+                
+                if (profileData) {
+                    this.userData = JSON.parse(profileData);
+                } else {
+                    // بيانات افتراضية للمستخدم الجديد
+                    this.userData = this.getDefaultUserData();
+                }
+                
+                this.avatarData = avatarData;
+                
+                // التحقق من تسجيل الدخول
+                const isLoggedIn = localStorage.getItem('narqa-is-logged-in');
+                if (!isLoggedIn) {
+                    window.location.href = 'login.html';
+                }
+            }
+            
+            getDefaultUserData() {
+                return {
+                    firstName: 'عبدالرحمن',
+                    lastName: 'راضي',
+                    email: 'abdelrahman@gmail.com',
+                    phone: '+20123456789',
+                    birthDate: '1995-03-15',
+                    gender: 'male',
+                    country: 'مصر',
+                    city: 'الإسكندرية',
+                    username: 'abdelrahman',
+                    level: 'beginner',
+                    previousExperience: '',
+                    learningGoals: ['memorization', 'tajweed'],
+                    preferredTeacher: 'الشيخ عبدالرحمن راضي',
+                    availability: ['evening', 'weekend'],
+                    joinDate: new Date().toLocaleDateString('ar-SA'),
+                    teacher: 'الشيخ عبدالرحمن',
+                    stats: {
+                        totalSessions: 0,
+                        learningHours: 0,
+                        memorizedParts: 0.5,
+                        certificates: 0,
+                        progress: 25
+                    },
+                    upcomingSessions: [],
+                    recentActivity: [
+                        {
+                            date: new Date().toLocaleDateString('ar-SA'),
+                            activity: 'إنشاء حساب جديد',
+                            icon: 'fas fa-user-plus'
+                        }
+                    ]
+                };
+            }
+            
+            setupEventListeners() {
+                // أزرار التعديل
+                document.getElementById('editProfileBtn').addEventListener('click', () => this.openEditProfileModal());
+                document.getElementById('changePasswordBtn').addEventListener('click', () => this.openChangePasswordModal());
+                document.getElementById('changeAvatarBtn').addEventListener('click', () => this.changeAvatar());
+                document.getElementById('logoutBtn').addEventListener('click', () => this.logout());
+                document.getElementById('bookSessionBtn').addEventListener('click', () => this.bookSession());
+                
+                // أزرار التعديل في الأقسام
+                document.querySelectorAll('.edit-btn[data-section]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const section = e.target.closest('.edit-btn').dataset.section;
+                        this.editSection(section);
+                    });
+                });
+                
+                // إغلاق المودالات
+                document.querySelectorAll('.modal-close').forEach(btn => {
+                    btn.addEventListener('click', () => this.closeModals());
+                });
+                
+                // حفظ التعديلات
+                document.getElementById('saveProfileBtn').addEventListener('click', () => this.saveProfile());
+                document.getElementById('saveLearningBtn').addEventListener('click', () => this.saveLearning());
+                document.getElementById('savePasswordBtn').addEventListener('click', () => this.savePassword());
+                
+                // التحقق من كلمة المرور أثناء الكتابة
+                document.getElementById('newPassword')?.addEventListener('input', (e) => this.checkPasswordStrength(e.target));
+            }
+            
+            setupScrollToTop() {
+                const scrollBtn = document.querySelector('.scroll-to-top');
+                
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                });
+                
+                scrollBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            renderProfile() {
+                if (!this.userData) return;
+                
+                // عرض الصورة الشخصية
+                this.renderAvatar();
+                
+                // عرض المعلومات الشخصية
+                this.renderPersonalInfo();
+                
+                // عرض معلومات التعلم
+                this.renderLearningInfo();
+                
+                // عرض الإحصائيات
+                this.renderStats();
+                
+                // عرض التقدم
+                this.renderProgress();
+                
+                // تحديث العنوان
+                document.title = `البروفايل - ${this.getFullName()}`;
+            }
+            
+            renderAvatar() {
+                const avatarImg = document.getElementById('profileAvatar');
+                
+                if (this.avatarData) {
+                    avatarImg.src = this.avatarData;
+                } else {
+                    avatarImg.src = 'img/person.jpeg'; // صورة افتراضية
+                }
+            }
+            
+            renderPersonalInfo() {
+                const data = this.userData;
+                
+                // الاسم
+                document.getElementById('profileName').textContent = this.getFullName();
+                document.getElementById('infoFullName').textContent = this.getFullName();
+                
+                // البريد الإلكتروني
+                document.getElementById('infoEmail').textContent = data.email;
+                
+                // رقم الهاتف
+                document.getElementById('infoPhone').textContent = data.phone;
+                
+                // تاريخ الميلاد
+                if (data.birthDate) {
+                    const birthDate = new Date(data.birthDate);
+                    document.getElementById('infoBirthDate').textContent = birthDate.toLocaleDateString('ar-SA');
+                }
+                
+                // النوع
+                document.getElementById('infoGender').textContent = data.gender === 'male' ? 'ذكر' : 'أنثى';
+                
+                // العنوان
+                const address = data.city ? `${data.country}، ${data.city}` : data.country;
+                document.getElementById('infoAddress').textContent = address;
+            }
+            
+            renderLearningInfo() {
+                const data = this.userData;
+                
+                // المستوى
+                const levelNames = {
+                    'beginner': 'مبتدئ',
+                    'intermediate': 'متوسط',
+                    'advanced': 'متقدم',
+                    'hafiz': 'حافظ'
+                };
+                const levelText = levelNames[data.level] || 'مبتدئ';
+                document.getElementById('profileLevel').textContent = levelText;
+                document.getElementById('infoLearningLevel').textContent = levelText;
+                
+                // المحفظ
+                document.getElementById('infoTeacher').textContent = data.teacher || 'الشيخ عبدالرحمن راضي';
+                
+                // تاريخ الانضمام
+                document.getElementById('infoJoinDate').textContent = data.joinDate || new Date().toLocaleDateString('ar-SA');
+                
+                // أهداف التعلم
+                const goalsText = this.getLearningGoalsText(data.learningGoals);
+                document.getElementById('infoLearningGoals').textContent = goalsText;
+                
+                // أوقات التواصل
+                const availabilityText = this.getAvailabilityText(data.availability);
+                document.getElementById('infoAvailability').textContent = availabilityText;
+                
+                // المحفظ المفضل
+                document.getElementById('infoPreferredTeacher').textContent = data.preferredTeacher || 'لا يوجد';
+            }
+            
+            renderStats() {
+                const stats = this.userData.stats || {};
+                
+                document.getElementById('statSessions').textContent = stats.totalSessions || 0;
+                document.getElementById('statHours').textContent = stats.learningHours || 0;
+                document.getElementById('statParts').textContent = stats.memorizedParts || 0;
+                document.getElementById('statCertificates').textContent = stats.certificates || 0;
+            }
+            
+            renderProgress() {
+                const progress = this.userData.stats?.progress || 25;
+                
+                // توزيع التقدم على الأجزاء
+                const part1 = Math.min(progress, 75);
+                const part2 = Math.max(0, Math.min(progress - 75, 40));
+                const part3 = Math.max(0, progress - 115);
+                
+                document.getElementById('progressPart1').textContent = `${part1}%`;
+                document.getElementById('progressFill1').style.width = `${part1}%`;
+                
+                document.getElementById('progressPart2').textContent = `${part2}%`;
+                document.getElementById('progressFill2').style.width = `${part2}%`;
+                
+                document.getElementById('progressPart3').textContent = `${part3}%`;
+                document.getElementById('progressFill3').style.width = `${part3}%`;
+                
+                // تحديث شريط التقدم في الجزء العلوي
+                document.querySelector('.profile-title').textContent = 
+                    `إجمالي التقدم: ${progress}% - ${this.getProgressStage(progress)}`;
+            }
+            
+            async loadSessions() {
+                try {
+                    // محاكاة تحميل الجلسات من الخادم
+                    const sessions = await this.fetchUpcomingSessions();
+                    this.renderSessions(sessions);
+                } catch (error) {
+                    console.error('Error loading sessions:', error);
+                    this.renderSessions([]);
+                }
+            }
+            
+            async fetchUpcomingSessions() {
+                // محاكاة اتصال بالخادم
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        const sessions = [
+                            {
+                                id: 1,
+                                title: 'جلسة تحفيظ الجزء الأول',
+                                teacher: 'الشيخ عبدالرحمن راضي',
+                                date: 'السبت 15 مارس',
+                                time: '10:00 - 11:00',
+                                status: 'upcoming'
+                            },
+                            {
+                                id: 2,
+                                title: 'مراجعة الجزء الأول',
+                                teacher: 'الشيخ عبدالرحمن راضي',
+                                date: 'الأحد 16 مارس',
+                                time: '14:00 - 15:00',
+                                status: 'upcoming'
+                            },
+                            {
+                                id: 3,
+                                title: 'جلسة تجويد',
+                                teacher: 'الشيخ عبدالرحمن راضي',
+                                date: 'الإثنين 17 مارس',
+                                time: '18:00 - 19:00',
+                                status: 'upcoming'
+                            }
+                        ];
+                        resolve(sessions);
+                    }, 500);
+                });
+            }
+            
+            renderSessions(sessions) {
+                const container = document.getElementById('upcomingSessions');
+                container.innerHTML = '';
+                
+                if (sessions.length === 0) {
+                    container.innerHTML = `
+                        <div class="session-item">
+                            <div class="session-content">
+                                <p style="text-align: center; color: var(--text-light);">
+                                    لا توجد جلسات قادمة. <a href="index.html#schedule" style="color: var(--primary-color);">احجز جلسة الآن</a>
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                sessions.forEach(session => {
+                    const sessionElement = document.createElement('div');
+                    sessionElement.className = 'session-item';
+                    sessionElement.innerHTML = `
+                        <div class="session-content">
+                            <div class="session-title">${session.title}</div>
+                            <div class="session-details">
+                                <div class="session-detail">
+                                    <i class="fas fa-user"></i>
+                                    <span>${session.teacher}</span>
+                                </div>
+                                <div class="session-detail">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>${session.date}</span>
+                                </div>
+                                <div class="session-detail">
+                                    <i class="fas fa-clock"></i>
+                                    <span>${session.time}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="session-status status-${session.status}">
+                            ${session.status === 'upcoming' ? 'قادمة' : 'مكتملة'}
+                        </div>
+                    `;
+                    container.appendChild(sessionElement);
+                });
+            }
+            
+            loadRecentActivity() {
+                const activity = this.userData.recentActivity || [];
+                this.renderRecentActivity(activity);
+            }
+            
+            renderRecentActivity(activities) {
+                const container = document.getElementById('recentActivity');
+                container.innerHTML = '';
+                
+                if (activities.length === 0) {
+                    container.innerHTML = `
+                        <div class="activity-item">
+                            <div class="activity-content">
+                                <p style="color: var(--text-light);">لا يوجد نشاط حديث</p>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                activities.forEach(activity => {
+                    const activityElement = document.createElement('div');
+                    activityElement.className = 'activity-item';
+                    activityElement.innerHTML = `
+                        <div class="activity-icon">
+                            <i class="${activity.icon || 'fas fa-history'}"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-text">${activity.activity}</div>
+                            <div class="activity-time">${activity.date}</div>
+                        </div>
+                    `;
+                    container.appendChild(activityElement);
+                });
+            }
+            
+            getFullName() {
+                return `${this.userData.firstName} ${this.userData.lastName}`;
+            }
+            
+            getLearningGoalsText(goals) {
+                if (!goals || goals.length === 0) return 'لا توجد أهداف محددة';
+                
+                const goalNames = {
+                    'memorization': 'حفظ القرآن الكريم كاملاً',
+                    'review': 'مراجعة ما تم حفظه',
+                    'tajweed': 'تعلم أحكام التجويد',
+                    'qiraat': 'تعلم القراءات العشر',
+                    'tajweed_certification': 'الحصول على إجازة في التجويد',
+                    'hifz_certification': 'الحصول على إجازة في الحفظ',
+                    'improve_recitation': 'تحسين التلاوة',
+                    'understand_meanings': 'فهم معاني الآيات',
+                    'certification': 'الحصول على إجازة'
+                };
+                
+                return goals.map(goal => goalNames[goal] || goal).join('، ');
+            }
+            
+            getAvailabilityText(availability) {
+                if (!availability || availability.length === 0) return 'غير محدد';
+                
+                const availabilityNames = {
+                    'morning': 'الصباح',
+                    'afternoon': 'الظهر',
+                    'evening': 'المساء',
+                    'night': 'الليل',
+                    'weekend': 'عطلات نهاية الأسبوع',
+                    'flexible': 'أوقات مرنة'
+                };
+                
+                return availability.map(avail => availabilityNames[avail] || avail).join('، ');
+            }
+            
+            getProgressStage(progress) {
+                if (progress < 25) return 'مبتدئ';
+                if (progress < 50) return 'متوسط';
+                if (progress < 75) return 'متقدم';
+                if (progress < 100) return 'متميز';
+                return 'حافظ';
+            }
+            
+            // ========== المودالات ==========
+            openEditProfileModal() {
+                const modal = document.getElementById('editProfileModal');
+                const form = document.getElementById('editProfileForm');
+                
+                // تعبئة النموذج بالبيانات الحالية
+                document.getElementById('editFirstName').value = this.userData.firstName;
+                document.getElementById('editLastName').value = this.userData.lastName;
+                document.getElementById('editPhone').value = this.userData.phone;
+                document.getElementById('editBirthDate').value = this.userData.birthDate;
+                document.getElementById('editGender').value = this.userData.gender;
+                document.getElementById('editCountry').value = this.userData.country;
+                document.getElementById('editCity').value = this.userData.city;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            openEditLearningModal() {
+                const modal = document.getElementById('editLearningModal');
+                const form = document.getElementById('editLearningForm');
+                
+                // تعبئة النموذج بالبيانات الحالية
+                const levelRadio = document.querySelector(`input[name="editLevel"][value="${this.userData.level}"]`);
+                if (levelRadio) levelRadio.checked = true;
+                
+                // أهداف التعلم
+                const goalsSelect = document.getElementById('editLearningGoals');
+                Array.from(goalsSelect.options).forEach(option => {
+                    option.selected = this.userData.learningGoals?.includes(option.value);
+                });
+                
+                // المحفظ المفضل
+                document.getElementById('editPreferredTeacher').value = this.userData.preferredTeacher || '';
+                
+                // أوقات التواصل
+                const availabilitySelect = document.getElementById('editAvailability');
+                Array.from(availabilitySelect.options).forEach(option => {
+                    option.selected = this.userData.availability?.includes(option.value);
+                });
+                
+                // الخبرة السابقة
+                document.getElementById('editPreviousExperience').value = this.userData.previousExperience || '';
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            openChangePasswordModal() {
+                const modal = document.getElementById('changePasswordModal');
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            closeModals() {
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = '';
+            }
+            
+            editSection(section) {
+                switch(section) {
+                    case 'personal':
+                        this.openEditProfileModal();
+                        break;
+                    case 'learning':
+                        this.openEditLearningModal();
+                        break;
+                    case 'progress':
+                        this.updateProgress();
+                        break;
+                }
+            }
+            
+            // ========== حفظ التعديلات ==========
+            saveProfile() {
+                const form = document.getElementById('editProfileForm');
+                
+                // التحقق من البيانات
+                const firstName = document.getElementById('editFirstName').value.trim();
+                const lastName = document.getElementById('editLastName').value.trim();
+                const phone = document.getElementById('editPhone').value.trim();
+                
+                if (!firstName || !lastName || !phone) {
+                    this.showNotification('يرجى ملء جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+                
+                // تحديث بيانات المستخدم
+                this.userData.firstName = firstName;
+                this.userData.lastName = lastName;
+                this.userData.phone = phone;
+                this.userData.birthDate = document.getElementById('editBirthDate').value;
+                this.userData.gender = document.getElementById('editGender').value;
+                this.userData.country = document.getElementById('editCountry').value;
+                this.userData.city = document.getElementById('editCity').value;
+                
+                // حفظ التعديلات
+                this.saveUserData();
+                
+                // إعادة عرض البروفايل
+                this.renderProfile();
+                
+                // إغلاق المودال
+                this.closeModals();
+                
+                // إظهار إشعار النجاح
+                this.showNotification('تم تحديث البروفايل بنجاح', 'success');
+            }
+            
+            saveLearning() {
+                const form = document.getElementById('editLearningForm');
+                
+                // المستوى
+                const level = document.querySelector('input[name="editLevel"]:checked')?.value;
+                if (!level) {
+                    this.showNotification('يرجى اختيار المستوى الحالي', 'error');
+                    return;
+                }
+                
+                // تحديث بيانات التعلم
+                this.userData.level = level;
+                
+                // أهداف التعلم
+                const goalsSelect = document.getElementById('editLearningGoals');
+                this.userData.learningGoals = Array.from(goalsSelect.selectedOptions).map(opt => opt.value);
+                
+                // المحفظ المفضل
+                this.userData.preferredTeacher = document.getElementById('editPreferredTeacher').value.trim();
+                
+                // أوقات التواصل
+                const availabilitySelect = document.getElementById('editAvailability');
+                this.userData.availability = Array.from(availabilitySelect.selectedOptions).map(opt => opt.value);
+                
+                // الخبرة السابقة
+                this.userData.previousExperience = document.getElementById('editPreviousExperience').value.trim();
+                
+                // حفظ التعديلات
+                this.saveUserData();
+                
+                // إعادة عرض البروفايل
+                this.renderProfile();
+                
+                // إغلاق المودال
+                this.closeModals();
+                
+                // إظهار إشعار النجاح
+                this.showNotification('تم تحديث معلومات التعلم بنجاح', 'success');
+            }
+            
+            savePassword() {
+                const currentPassword = document.getElementById('currentPassword').value;
+                const newPassword = document.getElementById('newPassword').value;
+                const confirmPassword = document.getElementById('confirmNewPassword').value;
+                
+                // التحقق من البيانات
+                if (!currentPassword || !newPassword || !confirmPassword) {
+                    this.showNotification('يرجى ملء جميع الحقول', 'error');
+                    return;
+                }
+                
+                if (newPassword.length < 8) {
+                    this.showNotification('كلمة المرور يجب أن تكون 8 أحرف على الأقل', 'error');
+                    return;
+                }
+                
+                if (newPassword !== confirmPassword) {
+                    this.showNotification('كلمات المرور غير متطابقة', 'error');
+                    return;
+                }
+                
+                // هنا في الواقع يجب التحقق من كلمة المرور الحالية مع الخادم
+                // للمثال، سنفترض أنها صحيحة
+                
+                // محاكاة تغيير كلمة المرور
+                this.showNotification('تم تغيير كلمة المرور بنجاح', 'success');
+                
+                // إغلاق المودال
+                this.closeModals();
+                
+                // تفريغ الحقول
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+            }
+            
+            // ========== وظائف أخرى ==========
+            changeAvatar() {
                 const input = document.createElement('input');
                 input.type = 'file';
                 input.accept = 'image/*';
-                input.onchange = function(e) {
+                
+                input.onchange = (e) => {
                     const file = e.target.files[0];
                     if (file) {
+                        if (!file.type.startsWith('image/')) {
+                            this.showNotification('الرجاء اختيار صورة فقط', 'error');
+                            return;
+                        }
+                        
+                        if (file.size > 5 * 1024 * 1024) {
+                            this.showNotification('حجم الصورة كبير جداً (الحد الأقصى 5MB)', 'error');
+                            return;
+                        }
+                        
                         const reader = new FileReader();
-                        reader.onload = function(e) {
-                            document.getElementById('avatar-img').src = e.target.result;
-                            // هنا يمكن إرسال الصورة للخادم
-                            showNotification('تم تحديث الصورة بنجاح!', 'success');
+                        reader.onload = (e) => {
+                            this.avatarData = e.target.result;
+                            localStorage.setItem('narqa-user-avatar', this.avatarData);
+                            this.renderAvatar();
+                            this.showNotification('تم تحديث الصورة الشخصية بنجاح', 'success');
                         };
                         reader.readAsDataURL(file);
                     }
                 };
+                
                 input.click();
-            });
-            
-            // زر تعديل البروفايل
-            document.getElementById('edit-profile').addEventListener('click', function() {
-                showEditProfileModal();
-            });
-            
-            // زر تغيير كلمة المرور
-            document.getElementById('change-password').addEventListener('click', function() {
-                showChangePasswordModal();
-            });
-            
-            // زر تسجيل الخروج
-            document.getElementById('logout-btn').addEventListener('click', function() {
-                if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-                    // هنا يمكن إضافة منطق تسجيل الخروج
-                    window.location.href = 'index.html';
-                }
-            });
-        });
-        
-        function loadUpcomingSessions() {
-            const sessions = [
-                {
-                    date: 'السبت 15 مارس',
-                    time: '10:00 - 11:00',
-                    teacher: 'الشيخ عبدالرحمن',
-                    type: 'تحفيظ الجزء الأول'
-                },
-                {
-                    date: 'الأحد 16 مارس',
-                    time: '14:00 - 15:00',
-                    teacher: 'الشيخ محمد',
-                    type: 'مراجعة'
-                },
-                {
-                    date: 'الإثنين 17 مارس',
-                    time: '18:00 - 19:00',
-                    teacher: 'الشيخ أحمد',
-                    type: 'تجويد'
-                }
-            ];
-            
-            const container = document.getElementById('upcoming-sessions');
-            container.innerHTML = '';
-            
-            sessions.forEach(session => {
-                const li = document.createElement('li');
-                li.className = 'session-item';
-                li.innerHTML = `
-                    <div class="session-header">
-                        <strong>${session.date}</strong>
-                        <span class="session-status status-upcoming">قادمة</span>
-                    </div>
-                    <p><i class="far fa-clock"></i> ${session.time}</p>
-                    <p><i class="fas fa-user"></i> ${session.teacher}</p>
-                    <p><i class="fas fa-book"></i> ${session.type}</p>
-                `;
-                container.appendChild(li);
-            });
-        }
-        
-        function showEditProfileModal() {
-            const modalHTML = `
-                <div class="modal-overlay" id="edit-modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>تعديل البروفايل</h3>
-                            <button class="modal-close">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>الاسم الكامل</label>
-                                <input type="text" id="edit-fullname" value="عبدالرحمن محمد راضي">
-                            </div>
-                            <div class="form-group">
-                                <label>البريد الإلكتروني</label>
-                                <input type="email" id="edit-email" value="abdelrahman@gmail.com">
-                            </div>
-                            <div class="form-group">
-                                <label>رقم الهاتف</label>
-                                <input type="tel" id="edit-phone" value="+20123456789">
-                            </div>
-                            <div class="form-group">
-                                <label>البلد</label>
-                                <select id="edit-country">
-                                    <option value="مصر" selected>مصر</option>
-                                    <option value="السعودية">السعودية</option>
-                                    <option value="الإمارات">الإمارات</option>
-                                    <option value="الكويت">الكويت</option>
-                                    <option value="الأردن">الأردن</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn secondary-btn" id="cancel-edit">إلغاء</button>
-                            <button class="btn primary-btn" id="save-profile">حفظ التعديلات</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            
-            const modal = document.getElementById('edit-modal');
-            
-            // إغلاق المودال
-            modal.querySelector('.modal-close').addEventListener('click', closeModal);
-            modal.querySelector('#cancel-edit').addEventListener('click', closeModal);
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) closeModal();
-            });
-            
-            // حفظ التعديلات
-            modal.querySelector('#save-profile').addEventListener('click', function() {
-                // هنا يمكن إرسال البيانات للخادم
-                const fullname = document.getElementById('edit-fullname').value;
-                const email = document.getElementById('edit-email').value;
-                const phone = document.getElementById('edit-phone').value;
-                const country = document.getElementById('edit-country').value;
-                
-                // تحديث الواجهة
-                document.getElementById('info-fullname').textContent = fullname;
-                document.getElementById('info-email').textContent = email;
-                document.getElementById('info-phone').textContent = phone;
-                document.getElementById('info-country').textContent = country;
-                document.getElementById('user-name').textContent = fullname.split(' ')[0];
-                document.getElementById('user-email').textContent = email;
-                
-                showNotification('تم تحديث البروفايل بنجاح!', 'success');
-                closeModal();
-            });
-            
-            function closeModal() {
-                modal.remove();
             }
             
-            // تنسيقات المودال
+            checkPasswordStrength(input) {
+                const password = input.value;
+                const meter = document.getElementById('newPasswordStrength');
+                
+                let strength = 0;
+                if (password.length >= 8) strength += 20;
+                if (/[A-Z]/.test(password)) strength += 20;
+                if (/[a-z]/.test(password)) strength += 20;
+                if (/[0-9]/.test(password)) strength += 20;
+                if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+                
+                meter.className = 'strength-meter';
+                if (strength < 40) {
+                    meter.classList.add('weak');
+                } else if (strength < 80) {
+                    meter.classList.add('medium');
+                } else {
+                    meter.classList.add('strong');
+                }
+            }
+            
+            updateProgress() {
+                // زيادة التقدم بشكل عشوائي (محاكاة)
+                const currentProgress = this.userData.stats.progress || 25;
+                const newProgress = Math.min(100, currentProgress + Math.floor(Math.random() * 10) + 1);
+                
+                this.userData.stats.progress = newProgress;
+                
+                // تحديث الإحصائيات الأخرى
+                this.userData.stats.totalSessions += 1;
+                this.userData.stats.learningHours += 1;
+                this.userData.stats.memorizedParts += 0.1;
+                
+                // إضافة نشاط جديد
+                this.userData.recentActivity.unshift({
+                    date: new Date().toLocaleDateString('ar-SA'),
+                    activity: 'تم إكمال جلسة جديدة',
+                    icon: 'fas fa-check-circle'
+                });
+                
+                // حفظ البيانات
+                this.saveUserData();
+                
+                // إعادة العرض
+                this.renderProfile();
+                this.loadRecentActivity();
+                
+                this.showNotification('تم تحديث التقدم بنجاح', 'success');
+            }
+            
+            bookSession() {
+                window.open('index.html#schedule', '_blank');
+            }
+            
+            logout() {
+                if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                    // مسح بيانات تسجيل الدخول
+                    localStorage.removeItem('narqa-is-logged-in');
+                    
+                    // التوجيه لصفحة تسجيل الدخول
+                    window.location.href = 'login.html';
+                }
+            }
+            
+            saveUserData() {
+                localStorage.setItem('narqa-user-profile', JSON.stringify(this.userData));
+            }
+            
+            showNotification(message, type = 'info') {
+                // إزالة أي إشعارات سابقة
+                const existingNotification = document.querySelector('.profile-notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                // إنشاء الإشعار
+                const notification = document.createElement('div');
+                notification.className = `profile-notification ${type}`;
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                // تنسيق الإشعار
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#2D5F2E' : type === 'error' ? '#dc3545' : '#ffc107'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    z-index: 2000;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    animation: slideIn 0.3s ease;
+                    max-width: 400px;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // إزالة الإشعار بعد 5 ثوانٍ
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        // تهيئة نظام البروفايل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            window.profileSystem = new ProfileSystem();
+            
+            // إضافة أنيميشنات CSS
             const style = document.createElement('style');
             style.textContent = `
-                .modal-overlay {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0,0,0,0.5);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 2000;
-                    animation: fadeIn 0.3s ease;
-                }
-                
-                .modal-content {
-                    background: white;
-                    border-radius: 10px;
-                    width: 90%;
-                    max-width: 500px;
-                    animation: slideUp 0.3s ease;
-                }
-                
-                .modal-header {
-                    padding: 1.5rem;
-                    border-bottom: 1px solid var(--light-color);
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                }
-                
-                .modal-close {
-                    background: none;
-                    border: none;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    color: var(--text-color);
-                }
-                
-                .modal-body {
-                    padding: 1.5rem;
-                }
-                
-                .modal-footer {
-                    padding: 1.5rem;
-                    border-top: 1px solid var(--light-color);
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: 1rem;
-                }
-                
-                @keyframes slideUp {
+                @keyframes slideIn {
                     from {
-                        transform: translateY(50px);
+                        transform: translateX(100%);
                         opacity: 0;
                     }
                     to {
-                        transform: translateY(0);
+                        transform: translateX(0);
                         opacity: 1;
                     }
                 }
+                
+                @keyframes slideOut {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+                
+                /* تنسيقات إضافية */
+                .level-options {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                    margin-top: 0.5rem;
+                }
+                
+                .level-options label {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    cursor: pointer;
+                }
+                
+                .level-options input[type="radio"] {
+                    margin: 0;
+                }
+                
+                select[multiple] {
+                    height: 120px;
+                    padding: 0.5rem;
+                }
+                
+                select[multiple] option {
+                    padding: 0.5rem;
+                    margin: 0.2rem 0;
+                    border-radius: 5px;
+                }
+                
+                select[multiple] option:checked {
+                    background: var(--primary-color);
+                    color: white;
+                }
+                
+                .password-strength {
+                    margin-top: 0.5rem;
+                    height: 4px;
+                    background: var(--light-color);
+                    border-radius: 2px;
+                    overflow: hidden;
+                }
+                
+                .strength-meter {
+                    height: 100%;
+                    transition: width 0.3s ease;
+                    border-radius: 2px;
+                }
+                
+                .strength-meter.weak {
+                    width: 33%;
+                    background: #dc3545;
+                }
+                
+                .strength-meter.medium {
+                    width: 66%;
+                    background: #ffc107;
+                }
+                
+                .strength-meter.strong {
+                    width: 100%;
+                    background: #28a745;
+                }
+                
+                /* تأثيرات hover للبطاقات */
+                .profile-section:hover .edit-btn {
+                    opacity: 1;
+                }
+                
+                .edit-btn {
+                    opacity: 0.7;
+                    transition: opacity 0.3s ease;
+                }
+                
+                /* تحسين شكل النافبار عند التمرير */
+                .navbar.scrolled {
+                    background: rgba(255, 255, 255, 0.98);
+                }
             `;
             document.head.appendChild(style);
-        }
-        
-        function showChangePasswordModal() {
-            const modalHTML = `
-                <div class="modal-overlay" id="password-modal">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>تغيير كلمة المرور</h3>
-                            <button class="modal-close">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>كلمة المرور الحالية</label>
-                                <input type="password" id="current-password">
-                            </div>
-                            <div class="form-group">
-                                <label>كلمة المرور الجديدة</label>
-                                <input type="password" id="new-password">
-                            </div>
-                            <div class="form-group">
-                                <label>تأكيد كلمة المرور الجديدة</label>
-                                <input type="password" id="confirm-password">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn secondary-btn" id="cancel-password">إلغاء</button>
-                            <button class="btn primary-btn" id="save-password">تغيير كلمة المرور</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            
-            const modal = document.getElementById('password-modal');
-            
-            // إغلاق المودال
-            modal.querySelector('.modal-close').addEventListener('click', closeModal);
-            modal.querySelector('#cancel-password').addEventListener('click', closeModal);
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) closeModal();
-            });
-            
-            // حفظ كلمة المرور
-            modal.querySelector('#save-password').addEventListener('click', function() {
-                const currentPass = document.getElementById('current-password').value;
-                const newPass = document.getElementById('new-password').value;
-                const confirmPass = document.getElementById('confirm-password').value;
-                
-                if (!currentPass || !newPass || !confirmPass) {
-                    showNotification('يرجى ملء جميع الحقول', 'error');
-                    return;
-                }
-                
-                if (newPass !== confirmPass) {
-                    showNotification('كلمات المرور غير متطابقة', 'error');
-                    return;
-                }
-                
-                if (newPass.length < 6) {
-                    showNotification('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
-                    return;
-                }
-                
-                // هنا يمكن إرسال البيانات للخادم
-                showNotification('تم تغيير كلمة المرور بنجاح!', 'success');
-                closeModal();
-            });
-            
-            function closeModal() {
-                modal.remove();
-            }
-        }
-        
-        function showNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 1rem 2rem;
-                background: ${type === 'success' ? '#2D5F2E' : '#dc3545'};
-                color: white;
-                border-radius: 10px;
-                z-index: 2000;
-                animation: slideIn 0.3s ease;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
+        });
     </script>
 </body>
 </html>
