@@ -1,0 +1,1900 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب - نرقي أكاديمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
+    <style>
+        /* تنسيقات تسجيل الحساب */
+        :root {
+            --primary-color: #2D5F2E;
+            --secondary-color: #F0A500;
+            --accent-color: #1A472A;
+            --light-color: #F8F9FA;
+            --dark-color: #2C3E50;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 10px;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-color: var(--light-color);
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.1) 0%, rgba(26, 71, 42, 0.1) 100%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        /* قسم التسجيل */
+        .register-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 50px;
+            position: relative;
+        }
+
+        .register-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease;
+            border: 1px solid rgba(45, 95, 46, 0.1);
+            overflow: hidden;
+            display: flex;
+            min-height: 600px;
+        }
+
+        .register-image {
+            flex: 1;
+            background: var(--gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/logo.jpeg') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .register-image-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .register-image h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .register-image p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .register-features {
+            text-align: right;
+            margin-top: 2rem;
+        }
+
+        .register-features li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .register-features i {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .register-form-container {
+            flex: 1.2;
+            padding: 3rem;
+            overflow-y: auto;
+            max-height: 600px;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .register-header h1 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .register-header p {
+            color: var(--text-light);
+        }
+
+        /* تقدم التسجيل */
+        .register-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .register-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 0;
+            left: 0;
+            height: 2px;
+            background: var(--light-color);
+            z-index: 0;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--light-color);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .progress-step.active .step-number {
+            background: var(--gradient);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .progress-step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* الخطوات */
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        /* نموذج الخطوة 1: المعلومات الشخصية */
+        .avatar-upload {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .avatar-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--light-color);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .avatar-preview:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .avatar-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .avatar-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .avatar-upload input[type="file"] {
+            display: none;
+        }
+
+        .avatar-label {
+            display: inline-block;
+            background: var(--light-color);
+            color: var(--text-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .avatar-label:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* نموذج الخطوة 2: معلومات الحساب */
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 4px;
+            background: var(--light-color);
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .strength-meter {
+            height: 100%;
+            width: 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .strength-meter.weak {
+            width: 33%;
+            background: #dc3545;
+        }
+
+        .strength-meter.medium {
+            width: 66%;
+            background: #ffc107;
+        }
+
+        .strength-meter.strong {
+            width: 100%;
+            background: #28a745;
+        }
+
+        .password-hints {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .password-hints ul {
+            list-style: none;
+            padding-right: 1rem;
+        }
+
+        .password-hints li {
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .password-hints li.valid {
+            color: #28a745;
+        }
+
+        .password-hints li i {
+            font-size: 0.8rem;
+        }
+
+        /* نموذج الخطوة 3: معلومات التعلم */
+        .level-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .level-option {
+            position: relative;
+        }
+
+        .level-option input[type="radio"] {
+            display: none;
+        }
+
+        .level-option label {
+            display: block;
+            padding: 1.5rem 1rem;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .level-option input[type="radio"]:checked + label {
+            background: rgba(45, 95, 46, 0.1);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .level-option label:hover {
+            background: rgba(45, 95, 46, 0.05);
+        }
+
+        .level-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* نماذج عامة */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--light-color);
+            border-radius: var(--border-radius);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 95, 46, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: #dc3545;
+        }
+
+        .form-group input.success {
+            border-color: #28a745;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.has-error .error-message {
+            display: block;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .form-check input[type="checkbox"] {
+            width: auto;
+        }
+
+        .form-check label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .form-check a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .form-check a:hover {
+            text-decoration: underline;
+        }
+
+        /* أزرار التنقل */
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* نهاية التسجيل */
+        .register-success {
+            text-align: center;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: var(--white);
+            animation: bounce 1s ease;
+        }
+
+        .register-success h2 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .register-success p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(45, 95, 46, 0.4);
+        }
+
+        /* الأنيميشن */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* التجاوب */
+        @media (max-width: 992px) {
+            .register-card {
+                flex-direction: column;
+                max-width: 600px;
+            }
+
+            .register-image {
+                padding: 2rem;
+            }
+
+            .register-image h2 {
+                font-size: 2rem;
+            }
+
+            .register-form-container {
+                max-height: none;
+                overflow-y: visible;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 100px 15px 30px;
+            }
+
+            .register-card {
+                border-radius: 15px;
+            }
+
+            .register-image,
+            .register-form-container {
+                padding: 2rem;
+            }
+
+            .register-image h2 {
+                font-size: 1.8rem;
+            }
+
+            .register-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .level-options {
+                grid-template-columns: 1fr;
+            }
+
+            .success-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .register-image,
+            .register-form-container {
+                padding: 1.5rem;
+            }
+
+            .register-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .progress-step .step-label {
+                font-size: 0.8rem;
+            }
+
+            .form-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" class="logo-img">
+                <span>NARQA</span>
+            </a>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-right"></i>
+                العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+    <!-- قسم التسجيل -->
+    <section class="register-container">
+        <div class="register-card">
+            <!-- الجانب الأيسر: الصورة والمعلومات -->
+            <div class="register-image">
+                <div class="register-image-content">
+                    <h2>انضم إلى رحلتنا مع القرآن</h2>
+                    <p>سجل الآن وابدأ رحلة حفظ القرآن الكريم مع أفضل المحفظين المعتمدين</p>
+                    
+                    <div class="register-features">
+                        <ul>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>محفظون معتمدون من الأزهر</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>جلسات مباشرة عبر الإنترنت</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>متابعة التقدم الشخصي</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>شهادات معتمدة</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>جدول مرن يناسب وقتك</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الجانب الأيمن: نموذج التسجيل -->
+            <div class="register-form-container">
+                <!-- تقدم التسجيل -->
+                <div class="register-progress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span class="step-label">المعلومات الشخصية</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span class="step-label">معلومات الحساب</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span class="step-label">معلومات التعلم</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span class="step-label">إنهاء التسجيل</span>
+                    </div>
+                </div>
+
+                <div class="register-header">
+                    <h1>إنشاء حساب جديد</h1>
+                    <p>املأ البيانات التالية لإنشاء حسابك</p>
+                </div>
+
+                <!-- الخطوة 1: المعلومات الشخصية -->
+                <div id="step1" class="step-content active">
+                    <form id="personalInfoForm">
+                        <div class="avatar-upload">
+                            <div class="avatar-preview" id="avatarPreview">
+                                <div class="avatar-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <img id="avatarImage" style="display: none;">
+                            </div>
+                            <input type="file" id="avatarInput" accept="image/*">
+                            <label for="avatarInput" class="avatar-label">
+                                <i class="fas fa-camera"></i> اختر صورة شخصية
+                            </label>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">الاسم الأول *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <div class="error-message">يجب إدخال الاسم الأول</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">اسم العائلة *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <div class="error-message">يجب إدخال اسم العائلة</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني *</label>
+                            <input type="email" id="email" name="email" required>
+                            <div class="error-message">يجب إدخال بريد إلكتروني صحيح</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                            <div class="error-message">يجب إدخال رقم هاتف صحيح</div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthDate">تاريخ الميلاد *</label>
+                                <input type="date" id="birthDate" name="birthDate" required>
+                                <div class="error-message">يجب إدخال تاريخ الميلاد</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">النوع</label>
+                                <select id="gender" name="gender">
+                                    <option value="">اختر النوع</option>
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">الدولة *</label>
+                            <select id="country" name="country" required>
+                                <option value="">اختر الدولة</option>
+                                <option value="مصر">مصر</option>
+                                <option value="السعودية">السعودية</option>
+                                <option value="الإمارات">الإمارات</option>
+                                <option value="الكويت">الكويت</option>
+                                <option value="الأردن">الأردن</option>
+                                <option value="عمان">عمان</option>
+                                <option value="قطر">قطر</option>
+                                <option value="لبنان">لبنان</option>
+                                <option value="سوريا">سوريا</option>
+                                <option value="العراق">العراق</option>
+                                <option value="اليمن">اليمن</option>
+                                <option value="السودان">السودان</option>
+                                <option value="المغرب">المغرب</option>
+                                <option value="الجزائر">الجزائر</option>
+                                <option value="تونس">تونس</option>
+                                <option value="ليبيا">ليبيا</option>
+                            </select>
+                            <div class="error-message">يجب اختيار الدولة</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">المدينة</label>
+                            <input type="text" id="city" name="city">
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="nextToStep2">
+                                التالي <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- الخطوة 2: معلومات الحساب -->
+                <div id="step2" class="step-content">
+                    <form id="accountInfoForm">
+                        <div class="form-group">
+                            <label for="username">اسم المستخدم *</label>
+                            <input type="text" id="username" name="username" required>
+                            <div class="error-message">يجب إدخال اسم مستخدم (4 أحرف على الأقل)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">كلمة المرور *</label>
+                            <input type="password" id="password" name="password" required>
+                            <div class="password-strength">
+                                <div class="strength-meter" id="strengthMeter"></div>
+                            </div>
+                            <div class="password-hints">
+                                <ul>
+                                    <li id="lengthHint">
+                                        <i class="far fa-circle"></i> 8 أحرف على الأقل
+                                    </li>
+                                    <li id="uppercaseHint">
+                                        <i class="far fa-circle"></i> حرف كبير واحد على الأقل
+                                    </li>
+                                    <li id="lowercaseHint">
+                                        <i class="far fa-circle"></i> حرف صغير واحد على الأقل
+                                    </li>
+                                    <li id="numberHint">
+                                        <i class="far fa-circle"></i> رقم واحد على الأقل
+                                    </li>
+                                    <li id="specialHint">
+                                        <i class="far fa-circle"></i> رمز خاص واحد على الأقل
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">تأكيد كلمة المرور *</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            <div class="error-message">كلمات المرور غير متطابقة</div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="showPassword">
+                            <label for="showPassword">إظهار كلمة المرور</label>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="backToStep1">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="button" class="btn btn-primary" id="nextToStep3">
+                                التالي <i class="fas fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- الخطوة 3: معلومات التعلم -->
+                <div id="step3" class="step-content">
+                    <form id="learningInfoForm">
+                        <div class="form-group">
+                            <label>المستوى الحالي في حفظ القرآن *</label>
+                            <div class="level-options">
+                                <div class="level-option">
+                                    <input type="radio" id="levelBeginner" name="level" value="beginner" required>
+                                    <label for="levelBeginner">
+                                        <span class="level-icon">🆕</span>
+                                        مبتدئ
+                                    </label>
+                                </div>
+                                <div class="level-option">
+                                    <input type="radio" id="levelIntermediate" name="level" value="intermediate">
+                                    <label for="levelIntermediate">
+                                        <span class="level-icon">📖</span>
+                                        متوسط
+                                    </label>
+                                </div>
+                                <div class="level-option">
+                                    <input type="radio" id="levelAdvanced" name="level" value="advanced">
+                                    <label for="levelAdvanced">
+                                        <span class="level-icon">🎓</span>
+                                        متقدم
+                                    </label>
+                                </div>
+                                <div class="level-option">
+                                    <input type="radio" id="levelHafiz" name="level" value="hafiz">
+                                    <label for="levelHafiz">
+                                        <span class="level-icon">⭐</span>
+                                        حافظ
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="error-message">يجب اختيار المستوى الحالي</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="previousExperience">هل لديك خبرة سابقة في التحفيظ؟</label>
+                            <textarea id="previousExperience" name="previousExperience" rows="3" placeholder="اذكر أي خبرات سابقة في حفظ القرآن..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="learningGoals">أهدافك من التعلم *</label>
+                            <select id="learningGoals" name="learningGoals" required multiple style="height: 120px;">
+                                <option value="memorization">حفظ القرآن الكريم كاملاً</option>
+                                <option value="review">مراجعة ما تم حفظه</option>
+                                <option value="tajweed">تعلم أحكام التجويد</option>
+                                <option value="qiraat">تعلم القراءات العشر</option>
+                                <option value="tajweed_certification">الحصول على إجازة في التجويد</option>
+                                <option value="hifz_certification">الحصول على إجازة في الحفظ</option>
+                                <option value="improve_recitation">تحسين التلاوة</option>
+                                <option value="understand_meanings">فهم معاني الآيات</option>
+                            </select>
+                            <div class="error-message">يجب اختيار هدف واحد على الأقل</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preferredTeacher">هل لديك محفظ مفضل؟</label>
+                            <input type="text" id="preferredTeacher" name="preferredTeacher" placeholder="اسم المحفظ إذا كان لديك محفظ مفضل">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availability">أوقات التواصل المناسبة *</label>
+                            <select id="availability" name="availability" required multiple style="height: 100px;">
+                                <option value="morning">الصباح (8 ص - 12 م)</option>
+                                <option value="afternoon">الظهر (12 م - 4 م)</option>
+                                <option value="evening">المساء (4 م - 8 م)</option>
+                                <option value="night">الليل (8 م - 12 ص)</option>
+                                <option value="weekend">عطلات نهاية الأسبوع</option>
+                                <option value="flexible">أوقات مرنة</option>
+                            </select>
+                            <div class="error-message">يجب اختيار وقت واحد على الأقل</div>
+                        </div>
+
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">
+                                أوافق على <a href="#" target="_blank">الشروط والأحكام</a> و
+                                <a href="#" target="_blank">سياسة الخصوصية</a> *
+                            </label>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-secondary" id="backToStep2">
+                                <i class="fas fa-arrow-right"></i> السابق
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="submitRegistration">
+                                إنشاء الحساب <i class="fas fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- الخطوة 4: نهاية التسجيل -->
+                <div id="step4" class="step-content">
+                    <div class="register-success">
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2>تهانينا!</h2>
+                        <p>
+                            تم إنشاء حسابك بنجاح. يمكنك الآن تسجيل الدخول والبدء في رحلتك مع القرآن الكريم.
+                            <br>
+                            تم إرسال رسالة تأكيد إلى بريدك الإلكتروني.
+                        </p>
+                        
+                        <div class="success-actions">
+                            <a href="profile.html" class="btn btn-primary">
+                                <i class="fas fa-user"></i> الانتقال إلى البروفايل
+                            </a>
+                            <a href="login.html" class="btn btn-secondary">
+                                <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                            </a>
+                            <a href="index.html" class="btn btn-secondary">
+                                <i class="fas fa-home"></i> العودة للرئيسية
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- زر العودة للأعلى -->
+    <button class="scroll-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // ========== نظام التسجيل الكامل ==========
+        class RegistrationSystem {
+            constructor() {
+                this.currentStep = 1;
+                this.userData = {
+                    personalInfo: {},
+                    accountInfo: {},
+                    learningInfo: {},
+                    avatar: null
+                };
+                
+                this.init();
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.setupFormValidation();
+                this.setupPasswordStrength();
+                this.setupScrollToTop();
+                this.updateProgress();
+            }
+            
+            setupEventListeners() {
+                // التنقل بين الخطوات
+                document.getElementById('nextToStep2').addEventListener('click', () => this.goToStep(2));
+                document.getElementById('nextToStep3').addEventListener('click', () => this.goToStep(3));
+                document.getElementById('backToStep1').addEventListener('click', () => this.goToStep(1));
+                document.getElementById('backToStep2').addEventListener('click', () => this.goToStep(2));
+                document.getElementById('submitRegistration').addEventListener('click', (e) => this.submitForm(e));
+                
+                // رفع الصورة الشخصية
+                document.getElementById('avatarInput').addEventListener('change', (e) => this.handleAvatarUpload(e));
+                
+                // إظهار/إخفاء كلمة المرور
+                document.getElementById('showPassword').addEventListener('change', (e) => this.togglePasswordVisibility(e));
+                
+                // التحقق من المدخلات أثناء الكتابة
+                this.setupLiveValidation();
+            }
+            
+            setupFormValidation() {
+                // تحقق من البريد الإلكتروني
+                document.getElementById('email').addEventListener('blur', (e) => this.validateEmail(e.target));
+                
+                // تحقق من رقم الهاتف
+                document.getElementById('phone').addEventListener('blur', (e) => this.validatePhone(e.target));
+                
+                // تحقق من اسم المستخدم
+                document.getElementById('username').addEventListener('blur', (e) => this.validateUsername(e.target));
+                
+                // تحقق من كلمة المرور
+                document.getElementById('password').addEventListener('input', (e) => this.validatePassword(e.target));
+                document.getElementById('confirmPassword').addEventListener('blur', (e) => this.validateConfirmPassword(e.target));
+            }
+            
+            setupPasswordStrength() {
+                const passwordInput = document.getElementById('password');
+                const strengthMeter = document.getElementById('strengthMeter');
+                const hints = {
+                    length: document.getElementById('lengthHint'),
+                    uppercase: document.getElementById('uppercaseHint'),
+                    lowercase: document.getElementById('lowercaseHint'),
+                    number: document.getElementById('numberHint'),
+                    special: document.getElementById('specialHint')
+                };
+                
+                passwordInput.addEventListener('input', () => {
+                    const password = passwordInput.value;
+                    let strength = 0;
+                    
+                    // تحقق من طول كلمة المرور
+                    if (password.length >= 8) {
+                        strength += 20;
+                        this.updateHint(hints.length, true);
+                    } else {
+                        this.updateHint(hints.length, false);
+                    }
+                    
+                    // تحقق من الحروف الكبيرة
+                    if (/[A-Z]/.test(password)) {
+                        strength += 20;
+                        this.updateHint(hints.uppercase, true);
+                    } else {
+                        this.updateHint(hints.uppercase, false);
+                    }
+                    
+                    // تحقق من الحروف الصغيرة
+                    if (/[a-z]/.test(password)) {
+                        strength += 20;
+                        this.updateHint(hints.lowercase, true);
+                    } else {
+                        this.updateHint(hints.lowercase, false);
+                    }
+                    
+                    // تحقق من الأرقام
+                    if (/[0-9]/.test(password)) {
+                        strength += 20;
+                        this.updateHint(hints.number, true);
+                    } else {
+                        this.updateHint(hints.number, false);
+                    }
+                    
+                    // تحقق من الرموز الخاصة
+                    if (/[^A-Za-z0-9]/.test(password)) {
+                        strength += 20;
+                        this.updateHint(hints.special, true);
+                    } else {
+                        this.updateHint(hints.special, false);
+                    }
+                    
+                    // تحديث شريط القوة
+                    this.updateStrengthMeter(strength);
+                });
+            }
+            
+            updateHint(hintElement, isValid) {
+                if (isValid) {
+                    hintElement.classList.add('valid');
+                    hintElement.querySelector('i').className = 'fas fa-check-circle';
+                } else {
+                    hintElement.classList.remove('valid');
+                    hintElement.querySelector('i').className = 'far fa-circle';
+                }
+            }
+            
+            updateStrengthMeter(strength) {
+                const meter = document.getElementById('strengthMeter');
+                meter.className = 'strength-meter';
+                
+                if (strength < 40) {
+                    meter.classList.add('weak');
+                } else if (strength < 80) {
+                    meter.classList.add('medium');
+                } else {
+                    meter.classList.add('strong');
+                }
+            }
+            
+            setupLiveValidation() {
+                // تحقق من جميع الحقول أثناء الكتابة
+                const inputs = document.querySelectorAll('input[required], select[required], textarea[required]');
+                inputs.forEach(input => {
+                    input.addEventListener('input', () => this.validateField(input));
+                });
+            }
+            
+            setupScrollToTop() {
+                const scrollBtn = document.querySelector('.scroll-to-top');
+                
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        scrollBtn.classList.add('visible');
+                    } else {
+                        scrollBtn.classList.remove('visible');
+                    }
+                });
+                
+                scrollBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            goToStep(step) {
+                // التحقق من صحة البيانات قبل الانتقال
+                if (step > this.currentStep) {
+                    if (!this.validateCurrentStep()) {
+                        return;
+                    }
+                    this.saveCurrentStepData();
+                }
+                
+                // إخفاء الخطوة الحالية
+                document.getElementById(`step${this.currentStep}`).classList.remove('active');
+                document.querySelector(`.progress-step[data-step="${this.currentStep}"]`).classList.remove('active');
+                
+                // إظهار الخطوة الجديدة
+                this.currentStep = step;
+                document.getElementById(`step${step}`).classList.add('active');
+                document.querySelector(`.progress-step[data-step="${step}"]`).classList.add('active');
+                
+                // تحديث التقدم
+                this.updateProgress();
+                
+                // التمرير للأعلى
+                window.scrollTo({
+                    top: document.querySelector('.register-form-container').offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+            
+            validateCurrentStep() {
+                const currentStepForm = document.querySelector(`#step${this.currentStep} form`);
+                const requiredFields = currentStepForm.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!this.validateField(field)) {
+                        isValid = false;
+                    }
+                });
+                
+                if (this.currentStep === 2) {
+                    // تحقق خاص لكلمة المرور
+                    const password = document.getElementById('password');
+                    const confirmPassword = document.getElementById('confirmPassword');
+                    
+                    if (!this.validatePassword(password) || !this.validateConfirmPassword(confirmPassword)) {
+                        isValid = false;
+                    }
+                }
+                
+                if (this.currentStep === 3) {
+                    // تحقق من اختيار المستوى
+                    const levelSelected = document.querySelector('input[name="level"]:checked');
+                    if (!levelSelected) {
+                        this.showError(document.querySelector('.level-options'), 'يجب اختيار المستوى الحالي');
+                        isValid = false;
+                    }
+                    
+                    // تحقق من اختيار الأهداف
+                    const goals = document.getElementById('learningGoals');
+                    if (goals.selectedOptions.length === 0) {
+                        this.showError(goals, 'يجب اختيار هدف واحد على الأقل');
+                        isValid = false;
+                    }
+                    
+                    // تحقق من اختيار الأوقات
+                    const availability = document.getElementById('availability');
+                    if (availability.selectedOptions.length === 0) {
+                        this.showError(availability, 'يجب اختيار وقت واحد على الأقل');
+                        isValid = false;
+                    }
+                    
+                    // تحقق من الموافقة على الشروط
+                    const terms = document.getElementById('terms');
+                    if (!terms.checked) {
+                        this.showError(terms, 'يجب الموافقة على الشروط والأحكام');
+                        isValid = false;
+                    }
+                }
+                
+                return isValid;
+            }
+            
+            validateField(field) {
+                let isValid = true;
+                let errorMessage = '';
+                
+                switch(field.type) {
+                    case 'email':
+                        isValid = this.validateEmail(field);
+                        errorMessage = 'يجب إدخال بريد إلكتروني صحيح';
+                        break;
+                        
+                    case 'tel':
+                        isValid = this.validatePhone(field);
+                        errorMessage = 'يجب إدخال رقم هاتف صحيح';
+                        break;
+                        
+                    case 'text':
+                        if (field.id === 'username') {
+                            isValid = this.validateUsername(field);
+                            errorMessage = 'يجب إدخال اسم مستخدم (4 أحرف على الأقل)';
+                        } else if (field.hasAttribute('required') && !field.value.trim()) {
+                            isValid = false;
+                            errorMessage = 'هذا الحقل مطلوب';
+                        }
+                        break;
+                        
+                    case 'password':
+                        if (field.id === 'password') {
+                            isValid = this.validatePassword(field);
+                            errorMessage = 'كلمة المرور ضعيفة';
+                        } else if (field.id === 'confirmPassword') {
+                            isValid = this.validateConfirmPassword(field);
+                            errorMessage = 'كلمات المرور غير متطابقة';
+                        }
+                        break;
+                        
+                    case 'date':
+                        if (!field.value) {
+                            isValid = false;
+                            errorMessage = 'يجب إدخال التاريخ';
+                        }
+                        break;
+                        
+                    case 'select-one':
+                        if (!field.value) {
+                            isValid = false;
+                            errorMessage = 'يجب اختيار قيمة';
+                        }
+                        break;
+                }
+                
+                if (isValid) {
+                    this.clearError(field);
+                } else {
+                    this.showError(field, errorMessage);
+                }
+                
+                return isValid;
+            }
+            
+            validateEmail(input) {
+                const email = input.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const isValid = emailRegex.test(email);
+                
+                if (isValid) {
+                    // تحقق من أن البريد الإلكتروني غير مستخدم (محاكاة)
+                    this.checkEmailAvailability(email).then(available => {
+                        if (!available) {
+                            this.showError(input, 'هذا البريد الإلكتروني مستخدم بالفعل');
+                        }
+                    });
+                }
+                
+                return isValid;
+            }
+            
+            async checkEmailAvailability(email) {
+                // محاكاة التحقق من الخادم
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        // في الحقيقة، هنا يجب الاتصال بالخادم
+                        // للمثال، سنفترض أن البريد متاح دائمًا
+                        resolve(true);
+                    }, 500);
+                });
+            }
+            
+            validatePhone(input) {
+                const phone = input.value.trim();
+                const phoneRegex = /^[+]?[0-9\s\-\(\)]{8,20}$/;
+                return phoneRegex.test(phone);
+            }
+            
+            validateUsername(input) {
+                const username = input.value.trim();
+                return username.length >= 4;
+            }
+            
+            validatePassword(input) {
+                const password = input.value;
+                const hasMinLength = password.length >= 8;
+                const hasUpperCase = /[A-Z]/.test(password);
+                const hasLowerCase = /[a-z]/.test(password);
+                const hasNumbers = /[0-9]/.test(password);
+                const hasSpecial = /[^A-Za-z0-9]/.test(password);
+                
+                return hasMinLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecial;
+            }
+            
+            validateConfirmPassword(input) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = input.value;
+                return password === confirmPassword && password.length > 0;
+            }
+            
+            showError(field, message) {
+                const formGroup = field.closest('.form-group') || field.closest('.form-check');
+                if (formGroup) {
+                    formGroup.classList.add('has-error');
+                    const errorElement = formGroup.querySelector('.error-message');
+                    if (errorElement) {
+                        errorElement.textContent = message;
+                        errorElement.style.display = 'block';
+                    }
+                    
+                    field.classList.add('error');
+                    field.classList.remove('success');
+                }
+            }
+            
+            clearError(field) {
+                const formGroup = field.closest('.form-group') || field.closest('.form-check');
+                if (formGroup) {
+                    formGroup.classList.remove('has-error');
+                    const errorElement = formGroup.querySelector('.error-message');
+                    if (errorElement) {
+                        errorElement.style.display = 'none';
+                    }
+                    
+                    field.classList.remove('error');
+                    field.classList.add('success');
+                }
+            }
+            
+            saveCurrentStepData() {
+                switch(this.currentStep) {
+                    case 1:
+                        this.userData.personalInfo = {
+                            firstName: document.getElementById('firstName').value,
+                            lastName: document.getElementById('lastName').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value,
+                            birthDate: document.getElementById('birthDate').value,
+                            gender: document.getElementById('gender').value,
+                            country: document.getElementById('country').value,
+                            city: document.getElementById('city').value
+                        };
+                        break;
+                        
+                    case 2:
+                        this.userData.accountInfo = {
+                            username: document.getElementById('username').value,
+                            password: document.getElementById('password').value
+                        };
+                        break;
+                        
+                    case 3:
+                        this.userData.learningInfo = {
+                            level: document.querySelector('input[name="level"]:checked')?.value,
+                            previousExperience: document.getElementById('previousExperience').value,
+                            learningGoals: Array.from(document.getElementById('learningGoals').selectedOptions).map(opt => opt.value),
+                            preferredTeacher: document.getElementById('preferredTeacher').value,
+                            availability: Array.from(document.getElementById('availability').selectedOptions).map(opt => opt.value),
+                            agreedToTerms: document.getElementById('terms').checked
+                        };
+                        break;
+                }
+            }
+            
+            updateProgress() {
+                // تحديث حالة الخطوات
+                document.querySelectorAll('.progress-step').forEach((step, index) => {
+                    const stepNumber = parseInt(step.dataset.step);
+                    
+                    if (stepNumber < this.currentStep) {
+                        step.classList.add('completed');
+                        step.classList.remove('active');
+                    } else if (stepNumber === this.currentStep) {
+                        step.classList.add('active');
+                        step.classList.remove('completed');
+                    } else {
+                        step.classList.remove('active', 'completed');
+                    }
+                });
+            }
+            
+            handleAvatarUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    // تحقق من نوع الملف
+                    if (!file.type.startsWith('image/')) {
+                        this.showNotification('الرجاء اختيار صورة فقط', 'error');
+                        return;
+                    }
+                    
+                    // تحقق من حجم الملف (5MB كحد أقصى)
+                    if (file.size > 5 * 1024 * 1024) {
+                        this.showNotification('حجم الصورة كبير جداً (الحد الأقصى 5MB)', 'error');
+                        return;
+                    }
+                    
+                    // قراءة الصورة وعرضها
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const preview = document.getElementById('avatarPreview');
+                        const img = document.getElementById('avatarImage');
+                        const placeholder = preview.querySelector('.avatar-placeholder');
+                        
+                        placeholder.style.display = 'none';
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                        
+                        // حفظ الصورة في بيانات المستخدم
+                        this.userData.avatar = e.target.result;
+                        
+                        this.showNotification('تم تحميل الصورة بنجاح', 'success');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            
+            togglePasswordVisibility(event) {
+                const showPassword = event.target.checked;
+                const passwordInput = document.getElementById('password');
+                const confirmPasswordInput = document.getElementById('confirmPassword');
+                
+                if (showPassword) {
+                    passwordInput.type = 'text';
+                    confirmPasswordInput.type = 'text';
+                } else {
+                    passwordInput.type = 'password';
+                    confirmPasswordInput.type = 'password';
+                }
+            }
+            
+            async submitForm(event) {
+                event.preventDefault();
+                
+                // التحقق النهائي
+                if (!this.validateCurrentStep()) {
+                    this.showNotification('يرجى تصحيح الأخطاء في النموذج', 'error');
+                    return;
+                }
+                
+                // حفظ بيانات الخطوة الأخيرة
+                this.saveCurrentStepData();
+                
+                // محاكاة إرسال البيانات للخادم
+                try {
+                    // إظهار مؤشر التحميل
+                    const submitBtn = document.getElementById('submitRegistration');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإنشاء...';
+                    submitBtn.disabled = true;
+                    
+                    // محاكاة اتصال بالخادم
+                    await this.sendRegistrationData();
+                    
+                    // الانتقال لخطوة النجاح
+                    this.goToStep(4);
+                    
+                    // حفظ بيانات المستخدم في localStorage للبروفايل
+                    this.saveUserDataToProfile();
+                    
+                    this.showNotification('تم إنشاء حسابك بنجاح!', 'success');
+                    
+                } catch (error) {
+                    this.showNotification('حدث خطأ أثناء إنشاء الحساب. حاول مرة أخرى.', 'error');
+                    console.error('Registration error:', error);
+                    
+                    // إعادة تفعيل الزر
+                    const submitBtn = document.getElementById('submitRegistration');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            }
+            
+            async sendRegistrationData() {
+                // محاكاة اتصال بالخادم
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        // في الحقيقة، هنا يجب إرسال البيانات للخادم
+                        // للمثال، سنفترض النجاح دائمًا
+                        
+                        // إعداد بيانات المستخدم للعرض في البروفايل
+                        const fullUserData = {
+                            ...this.userData.personalInfo,
+                            ...this.userData.accountInfo,
+                            ...this.userData.learningInfo,
+                            joinDate: new Date().toLocaleDateString('ar-SA'),
+                            stats: {
+                                totalSessions: 0,
+                                learningHours: 0,
+                                memorizedParts: 0,
+                                certificates: 0,
+                                progress: 0
+                            },
+                            upcomingSessions: [],
+                            recentActivity: []
+                        };
+                        
+                        // حفظ في localStorage
+                        localStorage.setItem('narqa-user-data', JSON.stringify(fullUserData));
+                        localStorage.setItem('narqa-user-avatar', this.userData.avatar);
+                        
+                        resolve(fullUserData);
+                    }, 2000);
+                });
+            }
+            
+            saveUserDataToProfile() {
+                // إعداد بيانات كاملة للمستخدم
+                const userProfileData = {
+                    // المعلومات الشخصية
+                    fullName: `${this.userData.personalInfo.firstName} ${this.userData.personalInfo.lastName}`,
+                    firstName: this.userData.personalInfo.firstName,
+                    lastName: this.userData.personalInfo.lastName,
+                    email: this.userData.personalInfo.email,
+                    phone: this.userData.personalInfo.phone,
+                    birthDate: this.userData.personalInfo.birthDate,
+                    gender: this.userData.personalInfo.gender,
+                    country: this.userData.personalInfo.country,
+                    city: this.userData.personalInfo.city,
+                    
+                    // معلومات الحساب
+                    username: this.userData.accountInfo.username,
+                    
+                    // معلومات التعلم
+                    level: this.userData.learningInfo.level,
+                    previousExperience: this.userData.learningInfo.previousExperience,
+                    learningGoals: this.userData.learningInfo.learningGoals,
+                    preferredTeacher: this.userData.learningInfo.preferredTeacher,
+                    availability: this.userData.learningInfo.availability,
+                    
+                    // معلومات إضافية
+                    joinDate: new Date().toLocaleDateString('ar-SA'),
+                    teacher: 'الشيخ عبدالرحمن',
+                    
+                    // الإحصائيات
+                    stats: {
+                        totalSessions: 0,
+                        learningHours: 0,
+                        memorizedParts: 0,
+                        certificates: 0,
+                        progress: 0
+                    },
+                    
+                    // الجلسات القادمة
+                    upcomingSessions: [],
+                    
+                    // النشاط الأخير
+                    recentActivity: [
+                        {
+                            date: new Date().toLocaleDateString('ar-SA'),
+                            activity: 'إنشاء حساب جديد',
+                            icon: 'fas fa-user-plus'
+                        }
+                    ]
+                };
+                
+                // حفظ الصورة الشخصية
+                if (this.userData.avatar) {
+                    localStorage.setItem('narqa-user-avatar', this.userData.avatar);
+                }
+                
+                // حفظ بيانات البروفايل
+                localStorage.setItem('narqa-user-profile', JSON.stringify(userProfileData));
+                localStorage.setItem('narqa-is-logged-in', 'true');
+            }
+            
+            showNotification(message, type = 'info') {
+                // إزالة أي إشعارات سابقة
+                const existingNotification = document.querySelector('.registration-notification');
+                if (existingNotification) {
+                    existingNotification.remove();
+                }
+                
+                // إنشاء الإشعار
+                const notification = document.createElement('div');
+                notification.className = `registration-notification ${type}`;
+                notification.innerHTML = `
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                // تنسيق الإشعار
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 80px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#2D5F2E' : type === 'error' ? '#dc3545' : '#ffc107'};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    z-index: 2000;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    animation: slideIn 0.3s ease;
+                    max-width: 400px;
+                `;
+                
+                // إضافة أنيميشن
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    @keyframes slideOut {
+                        from {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                        to {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                document.body.appendChild(notification);
+                
+                // إزالة الإشعار بعد 5 ثوانٍ
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 5000);
+            }
+        }
+        
+        // تهيئة نظام التسجيل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            window.registrationSystem = new RegistrationSystem();
+            
+            // إضافة CSS إضافي
+            const style = document.createElement('style');
+            style.textContent = `
+                select[multiple] {
+                    padding: 0.5rem;
+                }
+                
+                select[multiple] option {
+                    padding: 0.5rem;
+                    margin: 0.2rem 0;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                
+                select[multiple] option:hover {
+                    background: rgba(45, 95, 46, 0.1);
+                }
+                
+                select[multiple] option:checked {
+                    background: var(--primary-color);
+                    color: white;
+                }
+                
+                /* تنسيق خاص للتاريخ */
+                input[type="date"] {
+                    font-family: 'Tajawal', sans-serif;
+                    cursor: pointer;
+                }
+                
+                /* تنسيق خاص للأرقام */
+                input[type="tel"] {
+                    direction: ltr;
+                    text-align: right;
+                }
+                
+                /* تأثيرات focus */
+                input:focus, select:focus, textarea:focus {
+                    transform: translateY(-1px);
+                }
+                
+                /* زر محدد */
+                .btn-primary:active {
+                    transform: translateY(-1px) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
