@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختر مسارك التعليمي - نرقي أكاديمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="img/logo2.jpeg" type="image/x-icon">
+    <style>
+        /* تنسيقات صفحة المسار التعليمي */
+        :root {
+            --primary-color: #2D5F2E;
+            --secondary-color: #F0A500;
+            --accent-color: #1A472A;
+            --light-color: #F8F9FA;
+            --dark-color: #2C3E50;
+            --text-color: #333;
+            --text-light: #666;
+            --white: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 15px;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            --gradient-gold: linear-gradient(135deg, #F0A500, #FFD700);
+            --gradient-blue: linear-gradient(135deg, #3498db, #2c3e50);
+            --gradient-purple: linear-gradient(135deg, #8e44ad, #9b59b6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.05) 0%, rgba(26, 71, 42, 0.05) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* شريط التنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .back-home:hover {
+            color: var(--accent-color);
+            transform: translateX(-5px);
+        }
+
+        /* البطل */
+        .learning-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learning-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('img/quran-bg.png') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .learning-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .learning-hero h1 {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: slideUp 1s ease;
+        }
+
+        .learning-hero h1 .highlight {
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .learning-hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(45, 95, 46, 0.2);
+            z-index: -1;
+        }
+
+        .learning-hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: slideUp 1s ease 0.2s both;
+        }
+
+        .learning-quote {
+            font-style: italic;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background: rgba(45, 95, 46, 0.1);
+            border-radius: var(--border-radius);
+            border-right: 4px solid var(--primary-color);
+            max-width: 600px;
+            animation: fadeIn 1s ease 0.4s both;
+        }
+
+        /* قسم المسارات التعليمية */
+        .learning-paths {
+            padding: 80px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .path-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.6s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .path-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .path-card.featured {
+            border-color: var(--secondary-color);
+            animation: pulse 2s infinite;
+        }
+
+        .path-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gradient-gold);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(240, 165, 0, 0.3);
+        }
+
+        .path-header {
+            padding: 2.5rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .path-1 .path-header::before {
+            background: var(--gradient);
+        }
+
+        .path-2 .path-header::before {
+            background: var(--gradient-gold);
+        }
+
+        .path-3 .path-header::before {
+            background: var(--gradient-blue);
+        }
+
+        .path-4 .path-header::before {
+            background: var(--gradient-purple);
+        }
+
+        .path-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .path-card:hover .path-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .path-1 .path-icon {
+            background: var(--gradient);
+            box-shadow: 0 10px 30px rgba(45, 95, 46, 0.3);
+        }
+
+        .path-2 .path-icon {
+            background: var(--gradient-gold);
+            box-shadow: 0 10px 30px rgba(240, 165, 0, 0.3);
+        }
+
+        .path-3 .path-icon {
+            background: var(--gradient-blue);
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .path-4 .path-icon {
+            background: var(--gradient-purple);
+            box-shadow: 0 10px 30px rgba(142, 68, 173, 0.3);
+        }
+
+        .path-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .path-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .path-content {
+            padding: 0 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .path-description {
+            color: var(--text-color);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .path-features {
+            margin-bottom: 2rem;
+        }
+
+        .path-features h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .path-features ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .path-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .path-features li i {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .path-details {
+            background: rgba(45, 95, 46, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .path-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--light-color);
+            text-align: center;
+        }
+
+        .path-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .path-price .currency {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .path-price .period {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: normal;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            gap: 0.8rem;
+            min-width: 200px;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(45, 95, 46, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(45, 95, 46, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .btn-large {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            min-width: 250px;
+        }
+
+        /* قسم كيفية العمل */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(45, 95, 46, 0.03) 0%, rgba(26, 71, 42, 0.03) 100%);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            counter-reset: step-counter;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-card::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            top: -25px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(45, 95, 46, 0.3);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .step-description {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* قسم الأسئلة الشائعة */
+        .faq-section {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .faq-item.active {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            background: var(--light-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .faq-question h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .faq-toggle {
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+            color: var(--white);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 2rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* زر العودة للأعلى */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(45, 95, 46, 0.4);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(45, 95, 46, 0.5);
+        }
+
+        /* تذييل الصفحة */
+        .learning-footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 80px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .footer-logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-cta {
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* الأنيميشن */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateY(-15px) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.02);
+            }
+        }
+
+        /* التجاوب */
+        @media (max-width: 1200px) {
+            .paths-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .learning-hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.3rem;
+            }
+
+            .paths-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 3rem auto;
+            }
+
+            .steps-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .learning-hero {
+                padding: 140px 0 60px;
+            }
+
+            .learning-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .path-card {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .step-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .btn {
+                min-width: 180px;
+                padding: 0.9rem 1.5rem;
+            }
+
+            .btn-large {
+                min-width: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .learning-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .path-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .path-content {
+                padding: 0 1.5rem;
+            }
+
+            .path-footer {
+                padding: 1.5rem;
+            }
+
+            .path-price {
+                font-size: 1.7rem;
+            }
+
+            .faq-question {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+            }
+
+            .scroll-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي" class="logo-img">
+                <span>NARQA</span>
+            </a>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </nav>
+
+    <!-- البطل -->
+    <section class="learning-hero">
+        <div class="container">
+            <div class="learning-hero-content">
+                <h1>
+                    <span class="highlight">اختر مسارك التعليمي</span><br>
+                    وابدأ رحلتك مع القرآن الكريم
+                </h1>
+                <p>
+                    في نرقي أكاديمي، نقدم لك برامج تعليمية متكاملة ومصممة خصيصاً لتناسب مستواك وأهدافك.
+                    اختر المسار المناسب لك وابدأ رحلة التعلم مع أفضل المحفظين المعتمدين.
+                </p>
+                <div class="learning-quote">
+                    <i class="fas fa-quote-right"></i>
+                    "خيركم من تعلم القرآن وعلمه"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المسارات التعليمية -->
+    <section class="learning-paths">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">المسارات التعليمية المتاحة</h2>
+                <p class="section-subtitle">
+                    اختر من بين برامجنا التعليمية المتخصصة التي تناسب جميع المستويات والأعمار
+                </p>
+            </div>
+
+            <div class="paths-grid">
+                <!-- المسار 1: حفظ القرآن الكريم -->
+                <div class="path-card path-1 featured">
+                    <div class="path-badge">
+                        <i class="fas fa-crown"></i> الأكثر طلباً
+                    </div>
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-book-quran"></i>
+                        </div>
+                        <h3 class="path-title">حفظ القرآن الكريم</h3>
+                        <p class="path-subtitle">من الصفر إلى الإجازة</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            برنامج متكامل لحفظ القرآن الكريم كاملاً مع ضبط التجويد، 
+                            يبدأ من تعلم الأحكام الأساسية حتى الإجازة المتصلة بالسند.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> حفظ القرآن كاملاً بالتجويد</li>
+                                <li><i class="fas fa-check"></i> متابعة أسبوعية للحفظ</li>
+                                <li><i class="fas fa-check"></i> مراجعة دورية شاملة</li>
+                                <li><i class="fas fa-check"></i> إجازة متصلة بالسند</li>
+                                <li><i class="fas fa-check"></i> شهادة معتمدة لكل جزء</li>
+                            </ul>
+                        </div>
+                        <div class="path-details">
+                            <div class="detail-item">
+                                <span class="detail-label">المدة:</span>
+                                <span class="detail-value">2-4 سنوات</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">الجلسات:</span>
+                                <span class="detail-value">3 جلسات أسبوعياً</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">المستوى:</span>
+                                <span class="detail-value">جميع المستويات</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>400</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="حفظ القرآن الكريم">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- المسار 2: تعليم التجويد -->
+                <div class="path-card path-2">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-microphone-alt"></i>
+                        </div>
+                        <h3 class="path-title">تعليم التجويد</h3>
+                        <p class="path-subtitle">إتقان أحكام التلاوة</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            دورة متخصصة في تعليم أحكام التجويد النظرية والعملية، 
+                            تبدأ من الأحكام الأساسية حتى الأحكام المتقدمة.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> تعلم أحكام النون الساكنة والتنوين</li>
+                                <li><i class="fas fa-check"></i> أحكام الميم الساكنة</li>
+                                <li><i class="fas fa-check"></i> المدود وأحكامها</li>
+                                <li><i class="fas fa-check"></i> التفخيم والترقيق</li>
+                                <li><i class="fas fa-check"></i> الوقف والابتداء</li>
+                            </ul>
+                        </div>
+                        <div class="path-details">
+                            <div class="detail-item">
+                                <span class="detail-label">المدة:</span>
+                                <span class="detail-value">3-6 شهور</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">الجلسات:</span>
+                                <span class="detail-value">جلستين أسبوعياً</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">المستوى:</span>
+                                <span class="detail-value">متوسط - متقدم</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>300</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="تعليم التجويد">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- المسار 3: مراجعة الحفظ -->
+                <div class="path-card path-3">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3 class="path-title">مراجعة الحفظ</h3>
+                        <p class="path-subtitle">تثبيت المحفوظ وتقويته</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            برنامج خاص لمراجعة وتثبيت ما تم حفظه من القرآن، 
+                            مع التركيز على الضبط والجودة في التلاوة.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> مراجعة شاملة للمحفوظ</li>
+                                <li><i class="fas fa-check"></i> تصحيح الأخطاء في التلاوة</li>
+                                <li><i class="fas fa-check"></i> تثبيت الحفظ بالتكرار</li>
+                                <li><i class="fas fa-check"></i> اختبارات دورية</li>
+                                <li><i class="fas fa-check"></i> سجل متابعة للمراجعة</li>
+                            </ul>
+                        </div>
+                        <div class="path-details">
+                            <div class="detail-item">
+                                <span class="detail-label">المدة:</span>
+                                <span class="detail-value">حسب المحفوظ</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">الجلسات:</span>
+                                <span class="detail-value">2-3 جلسات أسبوعياً</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">المستوى:</span>
+                                <span class="detail-value">حافظ - متقدم</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>250</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="مراجعة الحفظ">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- المسار 4: القراءات العشر -->
+                <div class="path-card path-4">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-quran"></i>
+                        </div>
+                        <h3 class="path-title">القراءات العشر</h3>
+                        <p class="path-subtitle">تعلم الروايات المتواترة</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            دورة متقدمة لتعلم القراءات العشر الصغرى والكبرى، 
+                            تبدأ من قراءة حفص حتى إتقان جميع القراءات.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> تعلم القراءات السبع</li>
+                                <li><i class="fas fa-check"></i> القراءات الثلاث المتممة</li>
+                                <li><i class="fas fa-check"></i> الفروق بين الروايات</li>
+                                <li><i class="fas fa-check"></i> إجازة في القراءات</li>
+                                <li><i class="fas fa-check"></i> دراسة طرق الأداء</li>
+                            </ul>
+                        </div>
+                        <div class="path-details">
+                            <div class="detail-item">
+                                <span class="detail-label">المدة:</span>
+                                <span class="detail-value">1-2 سنوات</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">الجلسات:</span>
+                                <span class="detail-value">3 جلسات أسبوعياً</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">المستوى:</span>
+                                <span class="detail-value">متقدم - حافظ</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>500</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="القراءات العشر">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 5rem;">
+                <h3 class="section-title">برامج خاصة أخرى</h3>
+                <p class="section-subtitle">
+                    لدينا أيضاً برامج مخصصة تناسب احتياجاتك الخاصة
+                </p>
+            </div>
+
+            <div class="paths-grid">
+                <!-- برنامج الأطفال -->
+                <div class="path-card path-2">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
+                        <h3 class="path-title">برنامج الأطفال</h3>
+                        <p class="path-subtitle">من 5 إلى 12 سنة</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            برنامج تعليمي مخصص للأطفال، يعتمد على أسلوب التعلم باللعب 
+                            والتشجيع، مع مراعاة المراحل العمرية المختلفة.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> تعليم الحروف الهجائية</li>
+                                <li><i class="fas fa-check"></i> تحفيظ قصار السور</li>
+                                <li><i class="fas fa-check"></i> أنشطة تفاعلية</li>
+                                <li><i class="fas fa-check"></i> جوائز تحفيزية</li>
+                                <li><i class="fas fa-check"></i> متابعة مع الأهل</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>200</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="برنامج الأطفال">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+
+                <!-- برنامج المراجعة السريعة -->
+                <div class="path-card path-3">
+                    <div class="path-header">
+                        <div class="path-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="path-title">مراجعة سريعة</h3>
+                        <p class="path-subtitle">للحفاظ والمشايخ</p>
+                    </div>
+                    <div class="path-content">
+                        <p class="path-description">
+                            برنامج مكثف لمراجعة القرآن كاملاً في وقت قصير، 
+                            مناسب للحفاظ والمشايخ الذين يريدون تجديد حفظهم.
+                        </p>
+                        <div class="path-features">
+                            <h4><i class="fas fa-star"></i> مميزات البرنامج</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> مراجعة القرآن في 3 شهور</li>
+                                <li><i class="fas fa-check"></i> جلسات يومية مكثفة</li>
+                                <li><i class="fas fa-check"></i> تصحيح الأخطاء</li>
+                                <li><i class="fas fa-check"></i> إجازة سريعة</li>
+                                <li><i class="fas fa-check"></i> شهادة مراجعة</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="path-footer">
+                        <div class="path-price">
+                            <span class="currency">ج.م</span>
+                            <span>600</span>
+                            <span class="period">/شهر</span>
+                        </div>
+                        <button class="btn btn-primary select-path" data-path="مراجعة سريعة">
+                            <i class="fas fa-graduation-cap"></i> اختر هذا المسار
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- كيفية العمل -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">كيفية العمل مع نرقي أكاديمي</h2>
+                <p class="section-subtitle">
+                    4 خطوات بسيطة تفصلك عن بدء رحلتك مع القرآن
+                </p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="step-title">اختر مسارك</h3>
+                    <p class="step-description">
+                        اختر من بين مساراتنا التعليمية المتعددة ما يناسب مستواك وأهدافك
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="step-title">حجز الجلسة</h3>
+                    <p class="step-description">
+                        اختر الوقت المناسب لك وتواصل مع المحفظ عبر الواتساب
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="step-title">بدء التعلم</h3>
+                    <p class="step-description">
+                        ابدأ جلساتك التعليمية عبر الإنترنت مع أفضل المحفظين
+                    </p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="step-title">الحصول على الشهادة</h3>
+                    <p class="step-description">
+                        احصل على شهادات معتمدة بعد إتمام كل مرحلة من مراحل البرنامج
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 4rem;">
+                <a href="#book" class="btn btn-primary btn-large" id="startLearningBtn">
+                    <i class="fas fa-rocket"></i> ابدأ رحلتك الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأسئلة الشائعة -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">أسئلة شائعة</h2>
+                <p class="section-subtitle">
+                    أجوبة على أكثر الأسئلة شيوعاً حول برامجنا التعليمية
+                </p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي مدة كل جلسة تعليمية؟</h3>
+                        <span class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>مدة الجلسة الواحدة 60 دقيقة، مقسمة إلى 45 دقيقة تعليم و15 دقيقة مراجعة وتقييم.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل يمكنني تغيير موعد الجلسة؟</h3>
+                        <span class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنك تغيير موعد الجلسة قبل 24 ساعة من موعدها عبر التواصل مع المحفظ مباشرة.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي وسائل الدفع المتاحة؟</h3>
+                        <span class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقبل الدفع عبر فودافون كاش، تحويل بنكي، أو الدفع النقدي في مقر الأكاديمية.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل توجد جلسة تجريبية مجانية؟</h3>
+                        <span class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم جلسة تجريبية مجانية مدتها 30 دقيقة لتقييم المستوى والتعرف على طريقة التعليم.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي شروط الحصول على الإجازة؟</h3>
+                        <span class="faq-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يشترط إكمال حفظ القرآن كاملاً، إتقان التجويد، والنجاح في الاختبارات الشفهية والتحريرية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- التذييل -->
+    <footer class="learning-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="img/logo2.jpeg" alt="شعار نرقي أكاديمي">
+                    <span>نرقي أكاديمي</span>
+                </div>
+                <p class="footer-description">
+                    منصة متكاملة لتعليم القرآن الكريم وتجويده عبر الإنترنت، 
+                    نعمل على إيصال العلم الشرعي بأساليب حديثة تناسب العصر.
+                </p>
+                <div class="footer-cta">
+                    <a href="tel:+201060785754" class="btn btn-secondary">
+                        <i class="fas fa-phone-alt"></i> اتصل بنا الآن
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/16egxWPfUa/" aria-label="فيسبوك">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://wa.me/01202988181" aria-label="واتساب">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/narqaacademy" aria-label="إنستجرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="يوتيوب">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 نرقي أكاديمي. جميع الحقوق محفوظة.
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="scroll-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- مودال حجز الجلسة -->
+    <div class="booking-modal-overlay" id="bookingModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; animation: fadeIn 0.3s ease;">
+        <div class="booking-modal" style="background: white; border-radius: 20px; width: 90%; max-width: 500px; padding: 2rem; animation: slideUp 0.3s ease; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h3 style="color: var(--accent-color); font-size: 1.8rem;"><i class="fas fa-calendar-check"></i> حجز الجلسة</h3>
+                <button class="modal-close" style="background: none; border: none; font-size: 1.5rem; color: var(--text-light); cursor: pointer;">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="bookingInfo" style="margin-bottom: 2rem;">
+                    <!-- سيتم ملؤه بالجافاسكريبت -->
+                </div>
+                <div style="text-align: center;">
+                    <a id="whatsappLink" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 1rem; padding: 1rem 2rem; font-size: 1.2rem; text-decoration: none;" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>التواصل عبر واتساب</span>
+                    </a>
+                    <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+                        سيتم فتح تطبيق واتساب لإرسال رسالة تلقائية للمحفظ
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== نظام الاختيار والحجز ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة النظام
+            initLearningSystem();
+            setupEventListeners();
+            setupScrollToTop();
+            setupFAQ();
+        });
+
+        function initLearningSystem() {
+            // تحميل المسار المختار من localStorage إذا وجد
+            const selectedPath = localStorage.getItem('selectedLearningPath');
+            if (selectedPath) {
+                updateSelectedPath(selectedPath);
+            }
+        }
+
+        function setupEventListeners() {
+            // أزرار اختيار المسار
+            document.querySelectorAll('.select-path').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const path = this.dataset.path;
+                    selectLearningPath(path);
+                });
+            });
+
+            // زر ابدأ رحلتك الآن
+            document.getElementById('startLearningBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                openBookingModal();
+            });
+
+            // إغلاق المودال
+            document.querySelector('.booking-modal-overlay .modal-close')?.addEventListener('click', closeBookingModal);
+            document.querySelector('.booking-modal-overlay')?.addEventListener('click', function(e) {
+                if (e.target === this) closeBookingModal();
+            });
+        }
+
+        function setupScrollToTop() {
+            const scrollBtn = document.querySelector('.scroll-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        function setupFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // إغلاق جميع العناصر الأخرى
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // تبديل العنصر الحالي
+                    item.classList.toggle('active');
+                });
+            });
+        }
+
+        function selectLearningPath(path) {
+            // حفظ المسار المختار
+            localStorage.setItem('selectedLearningPath', path);
+            
+            // تحديث الواجهة
+            updateSelectedPath(path);
+            
+            // إظهار إشعار
+            showNotification(`تم اختيار مسار "${path}" بنجاح!`, 'success');
+            
+            // التمرير لأسفل لرؤية زر الحجز
+            setTimeout(() => {
+                document.getElementById('startLearningBtn').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // إضافة تأثير على الزر
+                const btn = document.getElementById('startLearningBtn');
+                btn.style.animation = 'pulse 1s ease';
+                setTimeout(() => {
+                    btn.style.animation = '';
+                }, 1000);
+            }, 500);
+        }
+
+        function updateSelectedPath(path) {
+            // تحديث أزرار المسارات
+            document.querySelectorAll('.select-path').forEach(btn => {
+                if (btn.dataset.path === path) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> تم الاختيار';
+                    btn.classList.add('selected');
+                    btn.disabled = true;
+                    
+                    // إضافة تأثير على البطاقة
+                    const card = btn.closest('.path-card');
+                    card.style.boxShadow = '0 0 0 3px var(--primary-color)';
+                    card.style.transform = 'translateY(-10px)';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-graduation-cap"></i> اختر هذا المسار';
+                    btn.classList.remove('selected');
+                    btn.disabled = false;
+                    
+                    // إزالة التأثير من البطاقات الأخرى
+                    const card = btn.closest('.path-card');
+                    card.style.boxShadow = '';
+                    card.style.transform = '';
+                }
+            });
+        }
+
+        function openBookingModal() {
+            const selectedPath = localStorage.getItem('selectedLearningPath');
+            
+            if (!selectedPath) {
+                showNotification('يرجى اختيار مسار تعليمي أولاً', 'warning');
+                return;
+            }
+            
+            // تحديث معلومات الحجز
+            updateBookingInfo(selectedPath);
+            
+            // إظهار المودال
+            const modal = document.getElementById('bookingModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // إضافة تأثير
+            modal.style.animation = 'fadeIn 0.3s ease';
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.style.animation = 'fadeOut 0.3s ease';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        function updateBookingInfo(selectedPath) {
+            const bookingInfo = document.getElementById('bookingInfo');
+            const whatsappLink = document.getElementById('whatsappLink');
+            
+            // بيانات المسارات
+            const pathData = {
+                'حفظ القرآن الكريم': {
+                    price: 400,
+                    duration: '2-4 سنوات',
+                    sessions: '3 جلسات أسبوعياً',
+                    description: 'برنامج متكامل لحفظ القرآن الكريم كاملاً'
+                },
+                'تعليم التجويد': {
+                    price: 300,
+                    duration: '3-6 شهور',
+                    sessions: 'جلستين أسبوعياً',
+                    description: 'دورة متخصصة في أحكام التجويد'
+                },
+                'مراجعة الحفظ': {
+                    price: 250,
+                    duration: 'حسب المحفوظ',
+                    sessions: '2-3 جلسات أسبوعياً',
+                    description: 'برنامج لمراجعة وتثبيت الحفظ'
+                },
+                'القراءات العشر': {
+                    price: 500,
+                    duration: '1-2 سنوات',
+                    sessions: '3 جلسات أسبوعياً',
+                    description: 'دورة متقدمة للقراءات العشر'
+                },
+                'برنامج الأطفال': {
+                    price: 200,
+                    duration: 'مفتوح',
+                    sessions: 'جلستين أسبوعياً',
+                    description: 'برنامج تعليمي مخصص للأطفال'
+                },
+                'مراجعة سريعة': {
+                    price: 600,
+                    duration: '3 شهور',
+                    sessions: 'جلسات يومية',
+                    description: 'برنامج مكثف لمراجعة القرآن'
+                }
+            };
+            
+            const data = pathData[selectedPath] || {
+                price: 300,
+                duration: 'محدد لاحقاً',
+                sessions: 'محدد لاحقاً',
+                description: 'برنامج تعليمي مخصص'
+            };
+            
+            // تحديث معلومات الحجز
+            bookingInfo.innerHTML = `
+                <div style="background: rgba(45, 95, 46, 0.05); padding: 1.5rem; border-radius: 15px; margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 1rem; font-size: 1.3rem;">
+                        <i class="fas fa-info-circle"></i> تفاصيل الحجز
+                    </h4>
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(0,0,0,0.1);">
+                            <span style="color: var(--text-light);">المسار المختار:</span>
+                            <span style="font-weight: 600; color: var(--primary-color);">${selectedPath}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(0,0,0,0.1);">
+                            <span style="color: var(--text-light);">الرسوم الشهرية:</span>
+                            <span style="font-weight: 600; color: var(--primary-color);">${data.price} ج.م</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(0,0,0,0.1);">
+                            <span style="color: var(--text-light);">مدة البرنامج:</span>
+                            <span style="font-weight: 600; color: var(--primary-color);">${data.duration}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span style="color: var(--text-light);">عدد الجلسات:</span>
+                            <span style="font-weight: 600; color: var(--primary-color);">${data.sessions}</span>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: var(--text-color); line-height: 1.6; margin-bottom: 1.5rem;">
+                    ${data.description}. سيتم التواصل معك عبر واتساب لتحديد المواعيد المناسبة وتفاصيل البدء.
+                </p>
+            `;
+            
+            // تحديث رابط الواتساب
+            const phoneNumber = "01202988181";
+            const message = `مرحباً، أنا مهتم بحجز جلسات في مسار "${selectedPath}" مع الشيخ عبدالرحمن.\n\nتفاصيل الحجز:\n- المسار: ${selectedPath}\n- الرسوم: ${data.price} جنيه شهرياً\n- المدة: ${data.duration}\n- الجلسات: ${data.sessions}\n\nأرجو التواصل لتحديد المواعيد المناسبة.`;
+            const encodedMessage = encodeURIComponent(message);
+            whatsappLink.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        }
+
+        function showNotification(message, type = 'info') {
+            // إزالة أي إشعارات سابقة
+            const existingNotification = document.querySelector('.learning-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // إنشاء الإشعار
+            const notification = document.createElement('div');
+            notification.className = `learning-notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            // تنسيق الإشعار
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#2D5F2E' : type === 'warning' ? '#F0A500' : '#3498db'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                animation: slideInRight 0.3s ease;
+                max-width: 400px;
+                font-weight: 500;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // إضافة أنيميشنات CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+                
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes fadeOut {
+                    from {
+                        opacity: 1;
+                    }
+                    to {
+                        opacity: 0;
+                    }
+                }
+                
+                @keyframes pulse {
+                    0%, 100% {
+                        transform: scale(1);
+                    }
+                    50% {
+                        transform: scale(1.05);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // إزالة الإشعار بعد 5 ثوانٍ
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        // إضافة تأثيرات إضافية
+        document.querySelectorAll('.path-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.path-icon');
+                icon.style.transform = 'scale(1.1) rotate(10deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.path-icon');
+                icon.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+
+        // إضافة تأثيرات للأزرار
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // تأثير خاص لزر الواتساب
+        const whatsappBtn = document.querySelector('#whatsappLink');
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+            });
+            
+            whatsappBtn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        }
+
+        // تحديث عنوان الصفحة مع المسار المختار
+        setInterval(() => {
+            const selectedPath = localStorage.getItem('selectedLearningPath');
+            if (selectedPath) {
+                document.title = `اختر مسارك - ${selectedPath} | نرقي أكاديمي`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
